@@ -112,7 +112,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Auth
             login.Response = new LoginResponse
             {
 
-                Response = new LoginResponse.DataResponse
+                Data = new LoginResponse.DataResponse
                 {
                     CreatedAt = externalLoginResponse.Data.CreatedAt,
                     Email = externalLoginResponse.Data.Email,
@@ -138,7 +138,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Auth
                     Id = externalLoginResponse.Merchant.Id,
                     Mode = externalLoginResponse.Merchant.Mode,
                     Owner = externalLoginResponse.Merchant.Owner,
-                    ParentMerchantResponse = externalLoginResponse.Merchant.ParentMerchant,
+                    ParentMerchant = externalLoginResponse.Merchant.ParentMerchant,
                     Review = externalLoginResponse.Merchant.Review,
                     SandboxCallbackURL = externalLoginResponse.Merchant.SandboxCallbackURL,
 
@@ -226,7 +226,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Auth
                        CreatedAt = externalRefreshTokensResponse.Merchant.CreatedAt,
                        Email = externalRefreshTokensResponse.Merchant.Email,
                        Mode = externalRefreshTokensResponse.Merchant.Mode,
-                       ParentMerchantResponse = externalRefreshTokensResponse.Merchant.ParentMerchant,
+                       ParentMerchant = externalRefreshTokensResponse.Merchant.ParentMerchant,
                        Review = externalRefreshTokensResponse.Merchant.Review,
                        SandboxCallbackURL = externalRefreshTokensResponse.Merchant.SandboxCallbackURL
                     }

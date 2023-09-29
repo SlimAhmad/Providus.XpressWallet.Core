@@ -56,7 +56,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressW
             public string BVNFirstName { get; set; }
 
             [JsonProperty("nameMatch")]
-            public bool? NameMatch { get; set; }
+            public bool NameMatch { get; set; }
 
             [JsonProperty("email")]
             public string Email { get; set; }

@@ -13,7 +13,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Au
         public bool Status { get; set; }
 
         [JsonProperty("data")]
-        public DataResponse Response { get; set; }
+        public DataResponse Data { get; set; }
 
         [JsonProperty("merchant")]
         public MerchantResponse Merchant { get; set; }
@@ -78,7 +78,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Au
             public string BusinessType { get; set; }
 
             [JsonProperty("parentMerchantResponse")]
-            public object ParentMerchantResponse { get; set; }
+            public object ParentMerchant { get; set; }
 
             [JsonProperty("canDebitCustomer")]
             public bool CanDebitCustomer { get; set; }

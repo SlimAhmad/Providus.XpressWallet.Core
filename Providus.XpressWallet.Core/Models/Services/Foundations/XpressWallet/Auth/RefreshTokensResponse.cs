@@ -75,7 +75,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Au
             public string BusinessType { get; set; }
 
             [JsonProperty("parentMerchantResponse")]
-            public string ParentMerchantResponse { get; set; }
+            public string ParentMerchant { get; set; }
 
             [JsonProperty("canDebitCustomer")]
             public bool CanDebitCustomer { get; set; }

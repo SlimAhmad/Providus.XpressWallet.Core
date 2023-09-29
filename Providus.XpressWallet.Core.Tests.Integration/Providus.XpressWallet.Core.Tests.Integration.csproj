@@ -22,4 +22,17 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\Auth\" />
+    <Folder Include="API\card\" />
+    <Folder Include="API\Customers\" />
+    <Folder Include="API\Merchant\" />
+    <Folder Include="API\RoleAndPermission\" />
+    <Folder Include="API\Team\" />
+    <Folder Include="API\Transactions\" />
+    <Folder Include="API\Transfers\" />
+    <Folder Include="API\User\" />
+    <Folder Include="API\Wallet\" />
+  </ItemGroup>
+
 </Project>

@@ -24,4 +24,17 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Clients\Auth\" />
+    <Folder Include="Clients\card\" />
+    <Folder Include="Clients\Customers\" />
+    <Folder Include="Clients\Merchant\" />
+    <Folder Include="Clients\RoleAndPermission\" />
+    <Folder Include="Clients\Team\" />
+    <Folder Include="Clients\Transactions\" />
+    <Folder Include="Clients\Transfers\" />
+    <Folder Include="Clients\User\" />
+    <Folder Include="Clients\Wallet\" />
+  </ItemGroup>
+
 </Project>

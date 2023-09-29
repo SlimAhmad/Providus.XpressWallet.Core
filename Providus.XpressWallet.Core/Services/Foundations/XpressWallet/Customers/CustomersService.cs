@@ -100,8 +100,8 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
                     Customer = new CustomerDetailsResponse.CustomerResponse
                     {
                         Bvn = externalCustomerDetailsResponse.Customer.Bvn,
-                        BVNFirstName = externalCustomerDetailsResponse.Customer.FirstName,
-                        BVNLastName = externalCustomerDetailsResponse.Customer.LastName,
+                        BVNFirstName = externalCustomerDetailsResponse.Customer.BVNFirstName,
+                        BVNLastName = externalCustomerDetailsResponse.Customer.BVNLastName,
                         CreatedAt = externalCustomerDetailsResponse.Customer.CreatedAt,
                         DateOfBirth = externalCustomerDetailsResponse.Customer.DateOfBirth,
                         Email = externalCustomerDetailsResponse.Customer.Email,
@@ -110,7 +110,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
                         LastName = externalCustomerDetailsResponse.Customer.LastName,
                         NameMatch = externalCustomerDetailsResponse.Customer.NameMatch,
                         PhoneNumber = externalCustomerDetailsResponse.Customer.PhoneNumber,
-                        UpdatedAt = externalCustomerDetailsResponse.Customer.CreatedAt,
+                        UpdatedAt = externalCustomerDetailsResponse.Customer.UpdatedAt,
                         WalletId = externalCustomerDetailsResponse.Customer.WalletId,
                     },
                     Status = externalCustomerDetailsResponse.Status
@@ -151,13 +151,13 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
 
                          Email = customers.Email,
                          Bvn = customers.Bvn,
-                         BVNFirstName = customers.Bvn,
-                         BVNLastName = customers.Bvn,
+                         BVNFirstName = customers.BVNFirstName,
+                         BVNLastName = customers.BVNLastName,
                          CreatedAt = customers.CreatedAt,
                          DateOfBirth = customers.DateOfBirth,
-                         FirstName = customers.Bvn,
+                         FirstName = customers.FirstName,
                          Id = customers.Id,
-                         LastName = customers.Bvn,
+                         LastName = customers.LastName,
                          NameMatch = customers.NameMatch,
                          PhoneNumber = customers.PhoneNumber,
                          UpdatedAt = customers.UpdatedAt,

@@ -16,9 +16,9 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
                 (Rule: IsInvalid(updateCustomerProfile.Request.PhoneNumber), Parameter: nameof(UpdateCustomerProfileRequest.PhoneNumber)),
                 (Rule: IsInvalid(updateCustomerProfile.Request.FirstName), Parameter: nameof(UpdateCustomerProfileRequest.FirstName)),
                 (Rule: IsInvalid(updateCustomerProfile.Request.LastName), Parameter: nameof(UpdateCustomerProfileRequest.LastName)),
-                                (Rule: IsInvalid(customerId), Parameter: nameof(UpdateCustomerProfile)),
                 (Rule: IsInvalid(updateCustomerProfile.Request.Address), Parameter: nameof(UpdateCustomerProfileRequest.Address)),
-                (Rule: IsInvalid(updateCustomerProfile.Request.Metadata), Parameter: nameof(UpdateCustomerProfileRequest.Metadata))
+                (Rule: IsInvalid(updateCustomerProfile.Request.Metadata), Parameter: nameof(UpdateCustomerProfileRequest)),
+                (Rule: IsInvalid(customerId), Parameter: nameof(UpdateCustomerProfileRequest))  
                 );
 
         }

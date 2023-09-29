@@ -11,4 +11,9 @@
     <PackageReference Include="RESTFulSense" Version="2.15.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Providus.XpressWallet.Core.Tests.Unit" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+		<InternalsVisibleTo Include="Termii.Core.Tests.Acceptance" />
+	</ItemGroup>
 </Project>
