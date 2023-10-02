@@ -73,8 +73,6 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
         private static List<string> GetRandomStringList() =>
           new Filler<List<string>>().Create();
 
-        private static List<object> GetRandomObjectList() =>
-              new Filler<List<object>>().Create();
 
         private static bool GetRandomBoolean() =>
             Randomizer<bool>.Create();
@@ -157,7 +155,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Transactions = GetRandomMerchantTransactionsResponseTransactions(),
                 Metadata = GetRandomMerchantTransactionsResponseMetaData(),
 
@@ -235,8 +233,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
-                Transactions = GetRandomTransactionDetailsResponseMetaData(),
+                Status = GetRandomBoolean(),
+                Transaction = GetRandomTransactionDetailsResponseMetaData(),
 
             };
         }
@@ -253,7 +251,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                 Amount = GetRandomNumber(),
                 Metadata = new object(),
                 BalanceAfter = GetRandomNumber(),
-                BalanceBefore = GetRandomString(),
+                BalanceBefore = GetRandomNumber(),
                 Reference = GetRandomString(),
                 Source = new object(),
                 Destination = new object(),
@@ -282,7 +280,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Transactions = GetRandomCustomerTransactionsResponseTransactions(),
                 Metadata = GetRandomCustomerTransactionsResponseMetaData(),
 
@@ -344,7 +342,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomBatchTransactionsResponseData(),
                 Metadata = GetRandomBatchTransactionsResponseMetaData(),
 
@@ -393,7 +391,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                 Reversed = GetRandomBoolean(),
                 AllReferences = GetRandomStringList(),
                 PassedReferences = GetRandomStringList(),
-                FailedReferences = GetRandomObjectList(),
+                FailedReferences = new List<object>(),
                 CreatedAt = GetRandomDate(),
                 UpdatedAt = GetRandomDate(),
 
@@ -408,15 +406,15 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
 
         #endregion
 
-        #region BatchTransactionsDetailsResponse 
+        #region BatchTransactionDetailsResponse 
 
-        private static dynamic CreateRandomBatchTransactionsDetailsResponseProperties()
+        private static dynamic CreateRandomBatchTransactionDetailsResponseProperties()
         {
             return new
             {
 
-                Status = GetRandomString(),
-                Data = GetRandomBatchTransactionsDetailsResponseData(),
+                Status = GetRandomBoolean(),
+                Data = GetRandomBatchTransactionDetailsResponseData(),
        
 
             };
@@ -424,7 +422,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
 
    
 
-        private static dynamic GetRandomBatchTransactionsDetailsResponseSource()
+        private static dynamic GetRandomBatchTransactionDetailsResponseSource()
         {
 
             return new
@@ -439,19 +437,19 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
 
         }
 
-        private static dynamic GetRandomBatchTransactionsDetailsResponseData()
+        private static dynamic GetRandomBatchTransactionDetailsResponseData()
         {
 
             return  new
             {
                 Id = GetRandomString(),
                 Type = GetRandomString(),
-                Source = GetRandomBatchTransactionsDetailsResponseSource(),
+                Source = GetRandomBatchTransactionDetailsResponseSource(),
                 Reference = GetRandomString(),
                 Reversed = GetRandomBoolean(),
                 AllReferences = GetRandomStringList(),
                 PassedReferences = GetRandomStringList(),
-                FailedReferences = GetRandomObjectList(),
+                FailedReferences = new List<object>(),
                 CreatedAt = GetRandomDate(),
                 UpdatedAt = GetRandomDate(),
 
@@ -473,7 +471,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomPendingTransactionResponseData(),
                 Metadata = GetRandomPendingTransactionResponseMetaData(),
 
@@ -569,7 +567,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Message = GetRandomString(),
 
             };
@@ -585,7 +583,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomDownloadCustomerTransactionResponseData(),
           
 
@@ -698,7 +696,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomDownloadMerchantTransactionResponseData(),
 
             };

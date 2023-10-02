@@ -41,6 +41,11 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.User
             Message = "Value is required"
         };
 
+        private static dynamic IsInvalid(string text) => new
+        {
+            Condition = String.IsNullOrWhiteSpace(text),
+            Message = "Value is required"
+        };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)
         {

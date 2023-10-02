@@ -22,7 +22,7 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
                                   relativeUrl: $"merchant/transaction/{transactionReference}"
                                   );
         }
-        public async ValueTask<ExternalCustomerTransactionsResponse> GetCustomerTransactionAsync(
+        public async ValueTask<ExternalCustomerTransactionsResponse> GetCustomerTransactionsAsync(
             string customerId, int page, string type, int perPage)
         {
             return await GetAsync<ExternalCustomerTransactionsResponse>(

@@ -127,6 +127,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
                 Amount = customerBankTransfer.Request.Amount,
                 Narration = customerBankTransfer.Request.Narration,
                 SortCode = customerBankTransfer.Request.SortCode,
+                CustomerId = customerBankTransfer.Request.CustomerId,
 
             };
 
@@ -244,6 +245,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
             {
                    Transfer = new CustomerBankTransferResponse.TransferResponse
                    {
+                        
                        Amount = externalCustomerBankTransferResponse.Transfer.Amount,
                        Charges = externalCustomerBankTransferResponse.Transfer.Charges,
                        Description = externalCustomerBankTransferResponse.Transfer.Description,
@@ -273,6 +275,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
             merchantBatchBankTransfer.Response = new MerchantBatchBankTransferResponse
             {
                  Message = externalMerchantBatchBankTransferResponse.Message,
+                 Status = externalMerchantBatchBankTransferResponse.Status,
                  Data = new MerchantBatchBankTransferResponse.DataResponse
                  {
                      Accepted = externalMerchantBatchBankTransferResponse.Data.Accepted.Select(accepted =>
@@ -333,7 +336,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
                  Reference = externalCustomerToCustomerWalletTransferResponse.Data.Reference,
                  SourceCustomerId = externalCustomerToCustomerWalletTransferResponse.Data.SourceCustomerId,
                  SourceCustomerWallet = externalCustomerToCustomerWalletTransferResponse.Data.SourceCustomerWallet,
-                 TargetCustomerId = externalCustomerToCustomerWalletTransferResponse.Data.TargetCustomerWallet,
+                 TargetCustomerId = externalCustomerToCustomerWalletTransferResponse.Data.TargetCustomerId,
                  TargetCustomerWallet = externalCustomerToCustomerWalletTransferResponse.Data.TargetCustomerWallet,
                  Total = externalCustomerToCustomerWalletTransferResponse.Data.Total,
                  TransactionFee = externalCustomerToCustomerWalletTransferResponse.Data.TransactionFee,

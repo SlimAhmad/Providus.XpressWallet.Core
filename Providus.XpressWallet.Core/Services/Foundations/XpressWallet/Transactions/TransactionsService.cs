@@ -39,7 +39,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
             return ConvertToTransactionsResponse(externalTransactionDetailsResponse);
         });
 
-        public ValueTask<CustomerTransactions> GetCustomerTransactionRequestAsync(
+        public ValueTask<CustomerTransactions> GetCustomerTransactionsRequestAsync(
             string customerId, int page, string type, int perPage)=>
         TryCatch(async () =>
         {
@@ -48,7 +48,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
             ValidateCustomerTransactionsParameters(type);
             ValidateCustomerTransactionsParameters(perPage);
             ExternalCustomerTransactionsResponse externalCustomerTransactionsResponse = 
-                await xPressWalletBroker.GetCustomerTransactionAsync(customerId,page,type,perPage);
+                await xPressWalletBroker.GetCustomerTransactionsAsync(customerId,page,type,perPage);
             return ConvertToTransactionsResponse(externalCustomerTransactionsResponse);
         });
 
@@ -322,7 +322,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
                             Description = transactions.Description,
                             Destination = transactions.Destination,
                             Id = transactions.Id,
-                            MetadataResponse = transactions.Metadata,
+                            Metadata = transactions.Metadata,
                             Mode = transactions.Mode,
                             Reference = transactions.Reference,
                             Source = transactions.Source,
@@ -417,7 +417,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
                             Category = data.Category,
                             Creator = data.Creator,
                             MerchantId = data.MerchantId,
-                            MetadataResponse = new PendingTransactionResponse.MetadataResponse
+                            Metadata = new PendingTransactionResponse.MetadataResponse
                             {
                                Amount = data.Metadata.Amount,
                                AccountName = data.Metadata.AccountName,
@@ -446,6 +446,17 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
                     }).ToList(),
                     Metadata = new PendingTransactionResponse.MetadataResponse
                     {
+                        AccountName = externalPendingTransactionResponse.Metadata.AccountName,
+                        AccountNumber = externalPendingTransactionResponse.Metadata.AccountNumber,
+                        Amount = externalPendingTransactionResponse.Metadata.Amount,
+                        BankName = externalPendingTransactionResponse.Metadata.BankName,
+                        CustomData = new PendingTransactionResponse.CustomData
+                        {
+                           CustomerData = externalPendingTransactionResponse.Metadata.CustomData.CustomerData
+                        },
+                        CustomerId = externalPendingTransactionResponse.Metadata.CustomerId,
+                        Narration = externalPendingTransactionResponse.Metadata.Narration,
+                        SortCode= externalPendingTransactionResponse.Metadata.SortCode,
                         Page = externalPendingTransactionResponse.Metadata.Page,
                         TotalPages = externalPendingTransactionResponse.Metadata.TotalPages,
                         TotalRecords = externalPendingTransactionResponse.Metadata.TotalRecords,

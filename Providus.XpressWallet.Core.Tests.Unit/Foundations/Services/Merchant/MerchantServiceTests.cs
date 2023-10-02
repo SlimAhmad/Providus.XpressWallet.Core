@@ -23,7 +23,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
         private readonly Mock<IXpressWalletBroker> xPressWalletBrokerMock;
         private readonly Mock<IDateTimeBroker> dateTimeBrokerMock;
         private readonly ICompareLogic compareLogic;
-        private readonly IMerchantService authService;
+        private readonly IMerchantService merchantService;
 
         public MerchantServiceTests()
         {
@@ -31,7 +31,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             dateTimeBrokerMock = new Mock<IDateTimeBroker>();
             compareLogic = new CompareLogic();
 
-            authService = new MerchantService(
+            merchantService = new MerchantService(
                 xPressWalletBrokerMock.Object,
                 dateTimeBroker: dateTimeBrokerMock.Object);
         }
@@ -115,6 +115,14 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
         private static bool GetRandomBoolean() =>
             Randomizer<bool>.Create();
 
+        private static IFormFile GetRandomIFormFile() 
+        {
+            var mockFormFile = new Mock<IFormFile>();
+            mockFormFile.SetupGet(x => x.FileName).Returns(GetRandomString());
+            mockFormFile.SetupGet(x => x.Length).Returns(GetRandomNumber());
+            return mockFormFile.Object;
+        }
+
         private static Dictionary<string, int> CreateRandomDictionary() =>
             new Filler<Dictionary<string, int>>().Create();
 
@@ -187,19 +195,17 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
 
         #region MerchantKYCRequest 
 
-        private static dynamic CreateRandomMerchantKYCRequestProperties() =>
-           CreateExternalExternalMerchantKYCResponseFiller().Create();
-
-
-        private static Filler<ExternalMerchantKYCRequest> CreateExternalExternalMerchantKYCResponseFiller()
+        private static dynamic CreateRandomMerchantKYCRequestProperties()
         {
-            var filler = new Filler<ExternalMerchantKYCRequest>();
-
-            filler.Setup()
-               .OnType<object>().IgnoreIt();
-
-            return filler;
+            return new
+            {
+                CacPack =GetRandomIFormFile(),
+                DirectorsBVN = GetRandomString(),
+                MerchantId = GetRandomString(),
+            };
         }
+
+
 
         #endregion
 
@@ -285,9 +291,9 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                Max5000 = GetRandomString(),
-                Max50000 = GetRandomString(),
-                Min50000 = GetRandomString(),
+                Max5000 = GetRandomNumber(),
+                Max50000 = GetRandomNumber(),
+                Min50000 = GetRandomNumber(),
 
 
 
@@ -339,7 +345,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomMerchantAccessKeysResponseData(),
 
             };
@@ -366,7 +372,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomGenerateAccessKeysResponseData(),
 
             };
@@ -426,10 +432,15 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                Status = GetRandomBoolean(),
-                RequireVerification = GetRandomBoolean(),
-                Message = GetRandomString(),
-
+                FirstName = GetRandomString(),
+                LastName = GetRandomString(),
+                Password = GetRandomString(),
+                AccountNumber = GetRandomString(),
+                PhoneNumber = GetRandomString(),
+                BusinessName = GetRandomString(),
+                Email = GetRandomString(),
+                BusinessType = GetRandomString(),
+                SendEmail = GetRandomBoolean(),
 
             };
         }
@@ -446,15 +457,10 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                FirstName = GetRandomString(),
-                LastName = GetRandomString(),
-                Password = GetRandomString(),
-                AccountNumber = GetRandomString(),
-                PhoneNumber = GetRandomString(),
-                BusinessName = GetRandomString(),
-                Email = GetRandomString(),
-                BusinessType = GetRandomString(),
-                SendEmail = GetRandomBoolean(),
+
+                Status = GetRandomBoolean(),
+                RequireVerification = GetRandomBoolean(),
+                Message = GetRandomString(),
 
 
             };
@@ -470,7 +476,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Merchant
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomMerchantWalletResponseData(),
 
             };

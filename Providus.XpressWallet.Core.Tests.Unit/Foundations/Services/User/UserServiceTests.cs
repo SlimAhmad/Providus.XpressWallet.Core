@@ -54,7 +54,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.User
         private static string[] CreateRandomStringArray() =>
             new Filler<string[]>().Create();
 
-        private static List<string> CreateRandomStringList() =>
+        private static List<string> GetRandomStringList() =>
           new Filler<List<string>>().Create();
 
         private static bool GetRandomBoolean() =>
@@ -106,6 +106,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.User
             {
 
                 Status = GetRandomBoolean(),
+                Permissions = GetRandomStringList(),
                 Data = GetRandomUserProfileResponseData(),
         
 

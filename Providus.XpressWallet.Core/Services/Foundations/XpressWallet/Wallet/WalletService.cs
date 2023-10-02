@@ -453,7 +453,9 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
 
         }
 
-        private static CustomerCreditCustomerWallet ConvertToWalletResponse(CustomerCreditCustomerWallet customerCreditCustomerWallet, ExternalCustomerCreditCustomerWalletResponse externalCustomerCreditCustomerWalletResponse)
+        private static CustomerCreditCustomerWallet ConvertToWalletResponse(
+            CustomerCreditCustomerWallet customerCreditCustomerWallet,
+            ExternalCustomerCreditCustomerWalletResponse externalCustomerCreditCustomerWalletResponse)
         {
             customerCreditCustomerWallet.Response = new CustomerCreditCustomerWalletResponse
             {
@@ -481,6 +483,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
                              ReferenceExists = rejected.ReferenceExists,
                          };
                      }).ToList(),
+                     BatchReference = externalCustomerCreditCustomerWalletResponse.Data.BatchReference
                  }
             };
             return customerCreditCustomerWallet;

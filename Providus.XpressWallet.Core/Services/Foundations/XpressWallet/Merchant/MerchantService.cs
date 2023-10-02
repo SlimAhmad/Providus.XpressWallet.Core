@@ -18,14 +18,14 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
             this.dateTimeBroker = dateTimeBroker;
         }
 
-        public ValueTask<MerchantAccessKeys> GetMerchantAccessKeysAsync() =>
+        public ValueTask<MerchantAccessKeys> GetMerchantAccessKeysRequestAsync() =>
         TryCatch(async () =>
         {
             ExternalMerchantAccessKeysResponse externalMerchantAccessKeysResponse = 
                 await xPressWalletBroker.GetMerchantAccessKeysAsync();
             return ConvertToMerchantResponse(externalMerchantAccessKeysResponse);
         });
-        public ValueTask<MerchantProfile> GetMerchantProfileAsync()=>
+        public ValueTask<MerchantProfile> GetMerchantProfileRequestAsync()=>
         TryCatch(async () =>
         {
 
@@ -33,7 +33,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.GetMerchantProfileAsync();
             return ConvertToMerchantResponse(externalMerchantProfileResponse);
         });
-        public ValueTask<MerchantWallet> GetMerchantWalletAsync()=>
+        public ValueTask<MerchantWallet> GetMerchantWalletRequestAsync()=>
         TryCatch(async () =>
         {
 
@@ -41,14 +41,14 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.GetMerchantWalletAsync();
             return ConvertToMerchantResponse(externalMerchantWalletResponse);
         });
-        public ValueTask<GenerateAccessKeys> PostGenerateAccessKeysAsync()=>
+        public ValueTask<GenerateAccessKeys> PostGenerateAccessKeysRequestAsync()=>
         TryCatch(async () =>
         {
             ExternalGenerateAccessKeysResponse externalGenerateAccessKeysResponse = 
                 await xPressWalletBroker.PostGenerateAccessKeysAsync();
             return ConvertToMerchantResponse(externalGenerateAccessKeysResponse);
         });
-        public ValueTask<MerchantRegistration> PostMerchantRegistrationAsync(
+        public ValueTask<MerchantRegistration> PostMerchantRegistrationRequestAsync(
             MerchantRegistration externalMerchantRegistration)=>
         TryCatch(async () =>
         {
@@ -58,7 +58,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.PostMerchantRegistrationAsync(externalMerchantRegistrationRequest);
             return ConvertToMerchantResponse(externalMerchantRegistration, externalMerchantRegistrationResponse);
         });
-        public ValueTask<ResendVerification> PostResendVerificationAsync(
+        public ValueTask<ResendVerification> PostResendVerificationRequestAsync(
             ResendVerification externalResendVerification)=>
         TryCatch(async () =>
         {
@@ -68,7 +68,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.PostResendVerificationAsync(externalResendVerificationRequest);
             return ConvertToMerchantResponse(externalResendVerification, externalResendVerificationResponse);
         });
-        public ValueTask<SwitchAccountMode> PostSwitchAccountModeAsync(
+        public ValueTask<SwitchAccountMode> PostSwitchAccountModeRequestAsync(
             SwitchAccountMode externalSwitchAccountMode)=>
         TryCatch(async () =>
         {
@@ -78,7 +78,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.PostSwitchAccountModeAsync(externalSwitchAccountModeRequest);
             return ConvertToMerchantResponse(externalSwitchAccountMode, externalSwitchAccountModeResponse);
         });
-        public ValueTask<AccountVerification> PostAccountVerificationAsync(
+        public ValueTask<AccountVerification> PostAccountVerificationRequestAsync(
             AccountVerification externalAccountVerification)=>
         TryCatch(async () =>
         {
@@ -88,7 +88,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                 await xPressWalletBroker.PutAccountVerificationAsync(externalAccountVerificationRequest);
             return ConvertToMerchantResponse(externalAccountVerification, externalAccountVerificationResponse);
         });
-        public ValueTask<MerchantKYC> PutMerchantKYCAsync(
+        public ValueTask<MerchantKYC> PutMerchantKYCRequestAsync(
             MerchantKYC externalMerchantKYC)=>
         TryCatch(async () =>
         {
@@ -97,7 +97,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
             ExternalMerchantKYCResponse externalMerchantKYCResponse = await xPressWalletBroker.PutMerchantKYCAsync(externalMerchantKYCRequest);
             return ConvertToMerchantResponse(externalMerchantKYC, externalMerchantKYCResponse);
         });
-        public ValueTask<UpdateMerchantProfile> UpdateMerchantProfileAsync(
+        public ValueTask<UpdateMerchantProfile> UpdateMerchantProfileRequestAsync(
             UpdateMerchantProfile externalUpdateMerchantProfile)=>
         TryCatch(async () =>
         {
@@ -251,7 +251,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
                         Tier3MinBalance = externalMerchantProfileResponse.Data.Tier3MinBalance,
                         TransferCharges = new MerchantProfileResponse.TransferCharges
                         {
-                           Max5000 = externalMerchantProfileResponse.Data.TransferCharges.Max50000,
+                           Max5000 = externalMerchantProfileResponse.Data.TransferCharges.Max5000,
                            Max50000 = externalMerchantProfileResponse.Data.TransferCharges.Max50000,
                            Min50000 = externalMerchantProfileResponse.Data.TransferCharges.Min50000,
                            
@@ -272,7 +272,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
             {
                 Response = new GenerateAccessKeysResponse
                 {
-                    Data = new GenerateAccessKeysResponse.DataResponses
+                    Data = new GenerateAccessKeysResponse.DataResponse
                     {
                         PrivateKey = externalGenerateAccessKeysResponse.Data.PrivateKey,
                         PublicKey = externalGenerateAccessKeysResponse.Data.PublicKey,

@@ -140,7 +140,7 @@ namespace Providus.XpressWallet.Core.Clients.Transactions
         {
               try
             {
-                return await transactionsService.GetCustomerTransactionRequestAsync(customerId,page,type,perPage);
+                return await transactionsService.GetCustomerTransactionsRequestAsync(customerId,page,type,perPage);
             }
             catch (TransactionsValidationException transactionsValidationException)
             {

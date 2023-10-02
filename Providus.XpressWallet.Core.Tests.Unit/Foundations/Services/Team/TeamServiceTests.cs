@@ -18,7 +18,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
         private readonly Mock<IXpressWalletBroker> xPressWalletBrokerMock;
         private readonly Mock<IDateTimeBroker> dateTimeBrokerMock;
         private readonly ICompareLogic compareLogic;
-        private readonly ITeamService authService;
+        private readonly ITeamService teamService;
 
         public TeamServiceTests()
         {
@@ -26,7 +26,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
             dateTimeBrokerMock = new Mock<IDateTimeBroker>();
             compareLogic = new CompareLogic();
 
-            authService = new TeamService(
+            teamService = new TeamService(
                 xPressWalletBrokerMock.Object,
                 dateTimeBroker: dateTimeBrokerMock.Object);
         }
@@ -214,7 +214,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
         {
             return new
             {
-                MerchantId = GetRandomBoolean(),
+                MerchantId = GetRandomString(),
 
             };
         }
@@ -247,7 +247,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomMerchantListResponseData(),
 
             };
@@ -279,7 +279,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomAllInvitationsResponseData(),
 
             };
@@ -313,7 +313,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Data = GetRandomTeamMembersResponseData(),
 
             };

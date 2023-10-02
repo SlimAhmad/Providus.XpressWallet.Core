@@ -24,7 +24,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
 
             ExternalAllPermissionsResponse externalAllPermissionsResponse =
                 await xPressWalletBroker.GetAllPermissionsAsync();
-            return ConvertToTokensResponse(externalAllPermissionsResponse);
+            return ConvertToRoleAndPermissionsResponse(externalAllPermissionsResponse);
         });
         public ValueTask<AllRoles> GetAllRolesRequestAsync()=>
         TryCatch(async () =>
@@ -32,27 +32,27 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
 
             ExternalAllRolesResponse externalAllRolesResponse =
                 await xPressWalletBroker.GetAllRolesAsync();
-            return ConvertToTokensResponse(externalAllRolesResponse);
+            return ConvertToRoleAndPermissionsResponse(externalAllRolesResponse);
         });
         public ValueTask<CreateRole> PostCreateRoleRequestAsync(CreateRole externalCreateRole)=>
         TryCatch(async () =>
         {
             ValidateCreateRole(externalCreateRole);
-            ExternalCreateRoleRequest externalCreateRoleRequest = ConvertToTokensRequest(externalCreateRole);
+            ExternalCreateRoleRequest externalCreateRoleRequest = ConvertToRoleAndPermissionsRequest(externalCreateRole);
             ExternalCreateRoleResponse externalCreateRoleResponse = await xPressWalletBroker.PostCreateRoleAsync(externalCreateRoleRequest);
-            return ConvertToTokensResponse(externalCreateRole, externalCreateRoleResponse);
+            return ConvertToRoleAndPermissionsResponse(externalCreateRole, externalCreateRoleResponse);
         });
         public ValueTask<UpdateRole> UpdateRoleRequestAsync(UpdateRole externalUpdateRole, string roleId)=>
         TryCatch(async () =>
         {
             ValidateUpdateRole(externalUpdateRole,roleId);
-            ExternalUpdateRoleRequest externalUpdateRoleRequest = ConvertToTokensRequest(externalUpdateRole);
+            ExternalUpdateRoleRequest externalUpdateRoleRequest = ConvertToRoleAndPermissionsRequest(externalUpdateRole);
             ExternalUpdateRoleResponse externalUpdateRoleResponse = await xPressWalletBroker.UpdateRoleAsync(externalUpdateRoleRequest,roleId);
-            return ConvertToTokensResponse(externalUpdateRole, externalUpdateRoleResponse);
+            return ConvertToRoleAndPermissionsResponse(externalUpdateRole, externalUpdateRoleResponse);
         });
 
 
-        private static ExternalCreateRoleRequest ConvertToTokensRequest(CreateRole createRole)
+        private static ExternalCreateRoleRequest ConvertToRoleAndPermissionsRequest(CreateRole createRole)
         {
 
             return new ExternalCreateRoleRequest
@@ -64,7 +64,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
 
 
         }
-        private static ExternalUpdateRoleRequest ConvertToTokensRequest(UpdateRole createRole)
+        private static ExternalUpdateRoleRequest ConvertToRoleAndPermissionsRequest(UpdateRole createRole)
         {
 
             return new ExternalUpdateRoleRequest
@@ -78,7 +78,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
         }
 
 
-        private static AllPermissions ConvertToTokensResponse(ExternalAllPermissionsResponse externalAllPermissionsResponse)
+        private static AllPermissions ConvertToRoleAndPermissionsResponse(ExternalAllPermissionsResponse externalAllPermissionsResponse)
         {
             return new AllPermissions
             {
@@ -98,7 +98,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
             };
 
         }
-        private static AllRoles ConvertToTokensResponse(ExternalAllRolesResponse externalAllRolesResponse)
+        private static AllRoles ConvertToRoleAndPermissionsResponse(ExternalAllRolesResponse externalAllRolesResponse)
         {
             return new AllRoles
             {
@@ -116,33 +116,34 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.RoleAndPe
             };
 
         }
-        private static CreateRole ConvertToTokensResponse(CreateRole createRole, ExternalCreateRoleResponse externalCreateRoleResponse)
+        private static CreateRole ConvertToRoleAndPermissionsResponse(CreateRole createRole, 
+            ExternalCreateRoleResponse externalCreateRoleResponse)
         {
             createRole.Response = new CreateRoleResponse
             {
                  Data = new CreateRoleResponse.DataResponse
                  {
-                    Name = createRole.Response.Data.Name,
-                    Permissions = createRole.Response.Data.Permissions,
-                    Id = createRole.Response.Data.Id,
+                    Name = externalCreateRoleResponse.Data.Name,
+                    Permissions = externalCreateRoleResponse.Data.Permissions,
+                    Id = externalCreateRoleResponse.Data.Id,
                  },
-                 Message = createRole.Response.Message,
-                 Status = createRole.Response.Status,
+                 Message = externalCreateRoleResponse.Message,
+                 Status = externalCreateRoleResponse.Status,
             };
             return createRole;
 
         }
-        private static UpdateRole ConvertToTokensResponse(UpdateRole updateRole, ExternalUpdateRoleResponse externalUpdateRoleResponse)
+        private static UpdateRole ConvertToRoleAndPermissionsResponse(UpdateRole updateRole, ExternalUpdateRoleResponse externalUpdateRoleResponse)
         {
             updateRole.Response = new UpdateRoleResponse
             {
                    Data = new UpdateRoleResponse.DataResponse
                    {
-                      Id = updateRole.Response.Data.Id,
-                      Permissions = updateRole.Response.Data.Permissions,
-                      Name = updateRole.Response.Data.Name,
+                      Id = externalUpdateRoleResponse.Data.Id,
+                      Permissions = externalUpdateRoleResponse.Data.Permissions,
+                      Name = externalUpdateRoleResponse.Data.Name,
                    },
-                   Message = updateRole.Response.Message,
+                   Message = externalUpdateRoleResponse.Message,
                    Status = externalUpdateRoleResponse.Status
             };
             return updateRole;

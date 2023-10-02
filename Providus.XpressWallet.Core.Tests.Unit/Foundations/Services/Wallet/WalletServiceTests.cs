@@ -575,7 +575,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
 
             return new
             {
-                Status = GetRandomNumber(),
+                Status = GetRandomBoolean(),
                 Message = GetRandomString(),
                 Data = GetRandomDebitWalletResponseData(),
 
@@ -793,7 +793,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Wallet = GetRandomCustomerWalletResponseWallet(),
 
             };
@@ -837,7 +837,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
             return new
             {
 
-                Status = GetRandomString(),
+                Status = GetRandomBoolean(),
                 Wallet = GetRandomAllWalletsResponseWallet(),
 
             };

@@ -6,7 +6,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
     public class InvalidConfigurationTransfersException : Xeption
     {
         public InvalidConfigurationTransfersException(Exception innerException)
-            : base(message: "Invalid transfers configuration error occurred, contact support.",
+            : base(message: "Invalid transfer configuration error occurred, contact support.",
                   innerException)
         { }
 

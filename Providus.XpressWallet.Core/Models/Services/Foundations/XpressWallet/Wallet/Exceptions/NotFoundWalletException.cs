@@ -6,7 +6,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wa
     public class NotFoundWalletException : Xeption
     {
         public NotFoundWalletException(Exception innerException)
-            : base(message: "Not found insights error occurred, fix errors and try again.",
+            : base(message: "Not found Wallet error occurred, fix errors and try again.",
                   innerException)
         { }
 

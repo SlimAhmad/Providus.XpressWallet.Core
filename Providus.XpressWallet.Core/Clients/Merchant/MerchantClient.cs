@@ -17,7 +17,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
             try
             {
-                return await merchantService.PostAccountVerificationAsync(accountVerification);
+                return await merchantService.PostAccountVerificationRequestAsync(accountVerification);
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -48,7 +48,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
             try
             {
-                return await merchantService.PostGenerateAccessKeysAsync();
+                return await merchantService.PostGenerateAccessKeysRequestAsync();
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -79,7 +79,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.PutMerchantKYCAsync(merchantKYC);
+                return await merchantService.PutMerchantKYCRequestAsync(merchantKYC);
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -110,7 +110,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.PostMerchantRegistrationAsync(merchantRegistration);
+                return await merchantService.PostMerchantRegistrationRequestAsync(merchantRegistration);
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -141,7 +141,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.PostResendVerificationAsync(resendVerification);
+                return await merchantService.PostResendVerificationRequestAsync(resendVerification);
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -172,7 +172,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.GetMerchantAccessKeysAsync();
+                return await merchantService.GetMerchantAccessKeysRequestAsync();
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -203,7 +203,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.GetMerchantProfileAsync();
+                return await merchantService.GetMerchantProfileRequestAsync();
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -234,7 +234,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.GetMerchantWalletAsync();
+                return await merchantService.GetMerchantWalletRequestAsync();
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -265,7 +265,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.PostSwitchAccountModeAsync(switchAccountMode);
+                return await merchantService.PostSwitchAccountModeRequestAsync(switchAccountMode);
             }
             catch (MerchantValidationException merchantValidationException)
             {
@@ -296,7 +296,7 @@ namespace Providus.XpressWallet.Core.Clients.Merchant
         {
              try
             {
-                return await merchantService.UpdateMerchantProfileAsync(updateMerchantProfile);
+                return await merchantService.UpdateMerchantProfileRequestAsync(updateMerchantProfile);
             }
             catch (MerchantValidationException merchantValidationException)
             {

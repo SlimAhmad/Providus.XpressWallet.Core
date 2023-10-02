@@ -13,9 +13,9 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Me
         public bool Status { get; set; }
 
         [JsonProperty("data")]
-        public DataResponses Data { get; set; }
+        public DataResponse Data { get; set; }
 
-        public class DataResponses
+        public class DataResponse
         {
             [JsonProperty("publicKey")]
             public string PublicKey { get; set; }

@@ -372,7 +372,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
             return new
             {
                 All = GetRandomMerchantBatchBankTransferResponseAll(),
-                Rejected = new object(),
+                Rejected = new List<object>(),
                 Accepted = GetRandomMerchantBatchBankTransferResponseAccepted(),
 
             };

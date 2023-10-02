@@ -8,7 +8,7 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
 
         ValueTask<ExternalMerchantTransactionsResponse> GetMerchantTransactionsAsync(int page,string type,string status);
         ValueTask<ExternalTransactionDetailsResponse> GetTransactionDetailsAsync(string transactionReference);
-        ValueTask<ExternalCustomerTransactionsResponse> GetCustomerTransactionAsync(
+        ValueTask<ExternalCustomerTransactionsResponse> GetCustomerTransactionsAsync(
             string customerId,int page,string type,int perPage);
         ValueTask<ExternalBatchTransactionsResponse>GetBatchTransactionsAsync(string search, string category, string type,int page,int perPage);
         ValueTask<ExternalBatchTransactionDetailsResponse> GetBatchTransactionDetailsAsync(string reference);

@@ -52,7 +52,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
             public int Amount { get; set; }
 
             [JsonProperty("metadata")]
-            public object MetadataResponse { get; set; }
+            public object Metadata { get; set; }
 
             [JsonProperty("balance_after")]
             public int BalanceAfter { get; set; }

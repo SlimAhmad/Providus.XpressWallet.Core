@@ -171,7 +171,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.RoleAndPerm
 
         #region AllRolesResponse 
 
-        private static dynamic CreateRandomAllRoleResponseProperties()
+        private static dynamic CreateRandomAllRolesResponseProperties()
         {
             return new
             {

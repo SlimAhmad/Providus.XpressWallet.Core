@@ -4,26 +4,26 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant
 {
     internal interface IMerchantService
     {
-        ValueTask<AccountVerification> PostAccountVerificationAsync(
+        ValueTask<AccountVerification> PostAccountVerificationRequestAsync(
                   AccountVerification externalAccountVerification);
 
-        ValueTask<ResendVerification> PostResendVerificationAsync(
+        ValueTask<ResendVerification> PostResendVerificationRequestAsync(
             ResendVerification externalResendVerification);
 
-        ValueTask<MerchantKYC> PutMerchantKYCAsync(
+        ValueTask<MerchantKYC> PutMerchantKYCRequestAsync(
             MerchantKYC externalMerchantKYC);
 
-        ValueTask<MerchantProfile> GetMerchantProfileAsync();
-        ValueTask<UpdateMerchantProfile> UpdateMerchantProfileAsync(
+        ValueTask<MerchantProfile> GetMerchantProfileRequestAsync();
+        ValueTask<UpdateMerchantProfile> UpdateMerchantProfileRequestAsync(
             UpdateMerchantProfile externalUpdateMerchantProfile);
 
-        ValueTask<MerchantAccessKeys> GetMerchantAccessKeysAsync();
+        ValueTask<MerchantAccessKeys> GetMerchantAccessKeysRequestAsync();
 
-        ValueTask<GenerateAccessKeys> PostGenerateAccessKeysAsync();
-        ValueTask<SwitchAccountMode> PostSwitchAccountModeAsync(
+        ValueTask<GenerateAccessKeys> PostGenerateAccessKeysRequestAsync();
+        ValueTask<SwitchAccountMode> PostSwitchAccountModeRequestAsync(
             SwitchAccountMode externalSwitchAccountMode);
-        ValueTask<MerchantRegistration> PostMerchantRegistrationAsync(
+        ValueTask<MerchantRegistration> PostMerchantRegistrationRequestAsync(
             MerchantRegistration externalMerchantRegistration);
-        ValueTask<MerchantWallet> GetMerchantWalletAsync();
+        ValueTask<MerchantWallet> GetMerchantWalletRequestAsync();
     }
 }
