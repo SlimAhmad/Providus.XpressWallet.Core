@@ -8,7 +8,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transactions
         public async Task ShouldRetrieveTransactionDetailsAsync()
         {
             // given
-            string transactionreference = "";
+            string transactionreference = "<>";
 
             // when
             TransactionDetails retrievedTransactionModel =

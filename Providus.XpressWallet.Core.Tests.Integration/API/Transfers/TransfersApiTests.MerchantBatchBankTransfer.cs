@@ -14,8 +14,8 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
                {
                  new MerchantBatchBankTransferRequest
                  {
-                        AccountName = "AHMAD SALIM ABDULRAZZAK",
-                        AccountNumber = "0812158322",
+                        AccountName = "<>",
+                        AccountNumber = "<>",
                         Amount = 50,
                         Narration = "test",
                         SortCode = "000014",

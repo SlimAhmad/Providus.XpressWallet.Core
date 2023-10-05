@@ -8,7 +8,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Customers
         public async Task ShouldRetrieveCustomerDetailsAsync()
         {
             // given
-            string customerId = "183adcd3-4695-496a-8c25-10715cdfc45f";
+            string customerId = "<>";
 
             // when
             CustomerDetails retrievedCustomerModel =

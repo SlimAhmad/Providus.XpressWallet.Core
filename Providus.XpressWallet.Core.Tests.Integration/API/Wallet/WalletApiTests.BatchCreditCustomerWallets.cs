@@ -12,12 +12,12 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
             {
                 Request = new BatchCreditCustomerWalletsRequest
                 {
-                     BatchReference = "TESTBatchDebit@energywallet",
+                     BatchReference = Guid.NewGuid().ToString(),
                      Transactions = new List<BatchCreditCustomerWalletsRequest.Transaction> {
                          new BatchCreditCustomerWalletsRequest.Transaction 
                          {
                             Amount = 50,
-                            CustomerId = "e8a17512-0f30-4e82-a648-16540baf746e"
+                            CustomerId = Guid.NewGuid().ToString()
                          }
                      }
                 }

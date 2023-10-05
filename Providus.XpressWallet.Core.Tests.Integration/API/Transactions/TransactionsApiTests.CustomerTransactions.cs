@@ -8,8 +8,8 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transactions
         public async Task ShouldRetrieveCustomerTransactionAsync()
         {
             // given
-            string customerId = "183adcd3-4695-496a-8c25-10715cdfc45f";
-            string type = "ALL";
+            string customerId = "<>";
+            string type = "<ALL,CREDIT,DEBIT>";
             int page = 1;
             int perPage = 3;
 

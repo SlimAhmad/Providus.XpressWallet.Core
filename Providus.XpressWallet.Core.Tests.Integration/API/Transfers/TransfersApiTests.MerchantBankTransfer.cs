@@ -12,14 +12,14 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
             {
                 Request = new MerchantBankTransferRequest
                 {
-                    AccountName = "AHMAD SALIM ABDULRAZZAK",
-                    AccountNumber = "0812158322",
+                    AccountName = "<>",
+                    AccountNumber = "<>",
                     Amount = 50,
-                    Narration = "test",
-                    SortCode = "000014",
+                    Narration = "<>",
+                    SortCode = "<>",
                     Metadata = new MerchantBankTransferRequest.MetadataResponse
                     {
-                        CustomerData = "test"
+                        CustomerData = "<>"
                     }
 
                 }

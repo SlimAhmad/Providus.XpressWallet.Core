@@ -12,7 +12,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transactions
             {
                 Request = new ApproveTransactionRequest
                 {
-                     TransactionId = "test"
+                     TransactionId = "<>"
                 }
             };
 

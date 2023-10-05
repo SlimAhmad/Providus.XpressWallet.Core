@@ -9,7 +9,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
         {
             // given
             string sortCode = "000014";
-            string accountNumber = "0812158322";
+            string accountNumber = "<>";
 
             // when
             BankAccountDetails retrievedBankAccountModel =

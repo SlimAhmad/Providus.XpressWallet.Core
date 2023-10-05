@@ -12,7 +12,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transactions
             {
                 Request = new ReverseBatchTransactionRequest
                 {
-                   BatchReference = ""
+                   BatchReference = "<>"
                 }
             };
 

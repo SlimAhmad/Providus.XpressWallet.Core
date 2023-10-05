@@ -15,18 +15,18 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
                 
                 Request = new CreateWalletRequest
                 {
-                     Address = "5 tafawa ballewa road area bz, ahmad bello university zaria",
-                     Bvn = "22262949022",
-                     DateOfBirth = dateOfBirth.ToShortDateString(),
-                     Email = "pandahumairi@gmail.com",
-                     FirstName = "HUMAIRI",
-                     LastName = "ABDULRAZZAK",
+                     Address = "<Address>",
+                     Bvn = "<bvn>",
+                     DateOfBirth = "dateofbirth",
+                     Email = "<Email>",
+                     FirstName = "<FirstName>",
+                     LastName = "LastName",
                      Metadata = new CreateWalletRequest.MetadataResponse
                      {
                         AdditionalData = "null",
                         EvenMore = "null"
                      },
-                     PhoneNumber = "08062118754",
+                     PhoneNumber = "<PhoneNumber>",
                      
                 }
             };

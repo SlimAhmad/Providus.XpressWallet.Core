@@ -17,7 +17,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
                          new BatchDebitCustomerWalletsRequest.Transaction
                          {
                             Amount = 100,
-                            CustomerId = "e8a17512-0f30-4e82-a648-16540baf746e",
+                            CustomerId = Guid.NewGuid().ToString(),
                             Reference = Guid.NewGuid().ToString(),
                          }
                      }
