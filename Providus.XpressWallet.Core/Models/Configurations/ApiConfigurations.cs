@@ -2,7 +2,7 @@
 {
     public class ApiConfigurations
     {
-        public string ApiUrl { get; set; } = "https://api.ng.termii.com/";
+        public string ApiUrl { get; set; } = "https://payment.xpress-wallet.com/api/v1/";
         public string ApiKey { get; set; }
 
     }

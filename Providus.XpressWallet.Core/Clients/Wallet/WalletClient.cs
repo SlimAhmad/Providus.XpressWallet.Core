@@ -12,7 +12,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
         public WalletClient(IWalletService walletsService) =>
             walletService = walletsService;
 
-        public async ValueTask<AllWallets> GetAllWalletsAsync()
+        public async ValueTask<AllWallets> RetrieveAllWalletsAsync()
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<CustomerWallet> GetCustomerWalletAsync(string customerId)
+        public async ValueTask<CustomerWallet> RetrieveCustomerWalletAsync(string customerId)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<BatchCreditCustomerWallets> PostBatchCreditCustomerWalletsAsync(BatchCreditCustomerWallets batchCreditCustomerWallets)
+        public async ValueTask<BatchCreditCustomerWallets> BatchCreditCustomerWalletsAsync(BatchCreditCustomerWallets batchCreditCustomerWallets)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<BatchDebitCustomerWallets> PostBatchDebitCustomerWalletsAsync(BatchDebitCustomerWallets batchDebitCustomerWallets)
+        public async ValueTask<BatchDebitCustomerWallets> BatchDebitCustomerWalletsAsync(BatchDebitCustomerWallets batchDebitCustomerWallets)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<CreateWallet> PostCreateWalletAsync(CreateWallet createWallet)
+        public async ValueTask<CreateWallet> CreateWalletAsync(CreateWallet createWallet)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<CreditWallet> PostCreditWalletAsync(CreditWallet creditWallet)
+        public async ValueTask<CreditWallet> CreditWalletAsync(CreditWallet creditWallet)
         {
             try
             {
@@ -198,7 +198,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<CustomerCreditCustomerWallet> PostCustomerCreditCustomerWalletAsync(CustomerCreditCustomerWallet customerCreditCustomerWallet)
+        public async ValueTask<CustomerCreditCustomerWallet> CustomerCreditCustomerWalletAsync(CustomerCreditCustomerWallet customerCreditCustomerWallet)
         {
             try
             {
@@ -229,7 +229,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<DebitWallet> PostDebitWalletAsync(DebitWallet debitWallet)
+        public async ValueTask<DebitWallet> DebitWalletAsync(DebitWallet debitWallet)
         {
             try
             {
@@ -260,7 +260,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<FreezeWallet> PostFreezeWalletAsync(FreezeWallet freezeWallet)
+        public async ValueTask<FreezeWallet> FreezeWalletAsync(FreezeWallet freezeWallet)
         {
             try
             {
@@ -291,7 +291,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<FundMerchantSandBoxWallet> PostFundMerchantSandBoxWalletAsync(FundMerchantSandBoxWallet fundMerchantSandBoxWallet)
+        public async ValueTask<FundMerchantSandBoxWallet> FundMerchantSandBoxWalletAsync(FundMerchantSandBoxWallet fundMerchantSandBoxWallet)
         {
             try
             {
@@ -322,7 +322,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             }
         }
 
-        public async ValueTask<UnfreezeWallet> PostUnfreezeWalletAsync(UnfreezeWallet unfreezeWallet)
+        public async ValueTask<UnfreezeWallet> UnfreezeWalletAsync(UnfreezeWallet unfreezeWallet)
         {
             try
             {

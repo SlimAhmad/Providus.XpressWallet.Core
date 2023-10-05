@@ -17,6 +17,12 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
         [JsonProperty("data")]
         public List<Datum> Data { get; set; }
 
+        public class AdditionalMetadata
+        {
+            [JsonProperty("customer-data")]
+            public string CustomerData { get; set; }
+        }
+
         public class CustomData
         {
             [JsonProperty("some-data")]
@@ -24,10 +30,8 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
 
             [JsonProperty("more-data")]
             public string MoreData { get; set; }
-
-            [JsonProperty("customer-data")]
-            public string CustomerData { get; set; }
         }
+
 
         public class Datum
         {
@@ -35,7 +39,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
             public string Id { get; set; }
 
             [JsonProperty("fee")]
-            public double? Fee { get; set; }
+            public int Fee { get; set; }
 
             [JsonProperty("vat")]
             public double Vat { get; set; }
@@ -53,7 +57,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
             public int Amount { get; set; }
 
             [JsonProperty("metadata")]
-            public Metadata Metadata { get; set; }
+            public Metadata Metadata { get; set; } 
 
             [JsonProperty("balance_after")]
             public double BalanceAfter { get; set; }
@@ -88,8 +92,32 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
 
         public class Metadata
         {
+            [JsonProperty("target_customer_id")]
+            public string TargetCustomerId { get; set; }
+
+            [JsonProperty("source_customer_id")]
+            public string SourceCustomerId { get; set; }
+
+            [JsonProperty("target_customer_wallet")]
+            public string TargetCustomerWallet { get; set; }
+
+            [JsonProperty("source_customer_wallet")]
+            public string SourceCustomerWallet { get; set; }
+
             [JsonProperty("amount")]
-            public int Amount { get; set; }
+            public int? Amount { get; set; }
+
+            [JsonProperty("charges")]
+            public int? Charges { get; set; } 
+
+            [JsonProperty("bankName")]
+            public string BankName { get; set; }
+
+            [JsonProperty("vat")]
+            public double? Vat { get; set; }
+
+            [JsonProperty("walletId")]
+            public string WalletId { get; set; }
 
             [JsonProperty("sortCode")]
             public string SortCode { get; set; }
@@ -103,26 +131,32 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
             [JsonProperty("accountName")]
             public string AccountName { get; set; }
 
+            [JsonProperty("totalAmount")]
+            public double? TotalAmount { get; set; }
+
             [JsonProperty("accountNumber")]
             public string AccountNumber { get; set; }
 
-            [JsonProperty("sessionId")]
-            public string SessionId { get; set; }
+            [JsonProperty("walletAccountName")]
+            public string WalletAccountName { get; set; }
 
-            [JsonProperty("transactionReference")]
-            public string TransactionReference { get; set; }
+            [JsonProperty("additionalMetadata")]
+            public AdditionalMetadata AdditionalMetadata { get; set; }
 
-            [JsonProperty("target_customer_id")]
-            public string TargetCustomerId { get; set; }
+            [JsonProperty("walletAccountNumber")]
+            public string WalletAccountNumber { get; set; }
 
-            [JsonProperty("source_customer_id")]
-            public string SourceCustomerId { get; set; }
+            [JsonProperty("merchantId")]
+            public string MerchantId { get; set; }
 
-            [JsonProperty("target_customer_wallet")]
-            public string TargetCustomerWallet { get; set; }
+            [JsonProperty("nameEnquiryRef")]
+            public string NameEnquiryRef { get; set; }
 
-            [JsonProperty("source_customer_wallet")]
-            public string SourceCustomerWallet { get; set; }
+            [JsonProperty("sessionID")]
+            public string SessionID { get; set; }
+
+            [JsonProperty("fee")]
+            public int? Fee { get; set; }
 
             [JsonProperty("custom_data")]
             public CustomData CustomData { get; set; }
@@ -132,12 +166,6 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Tr
 
             [JsonProperty("customerName")]
             public string CustomerName { get; set; }
-
-            [JsonProperty("fee")]
-            public int? Fee { get; set; }
-
-            [JsonProperty("reference")]
-            public string Reference { get; set; }
         }
 
         

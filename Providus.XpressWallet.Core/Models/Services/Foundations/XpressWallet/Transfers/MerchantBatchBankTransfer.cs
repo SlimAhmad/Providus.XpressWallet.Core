@@ -2,7 +2,7 @@
 {
     public class MerchantBatchBankTransfer
     {
-        public MerchantBatchBankTransferRequest Request { get; set; }
+        public List<MerchantBatchBankTransferRequest> Request { get; set; }
 
         public MerchantBatchBankTransferResponse Response { get; set; }
     }

@@ -9,23 +9,27 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressW
 {
     internal class ExternalMerchantBatchBankTransferRequest
     {
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+       
+            [JsonProperty("amount")]
+            public int Amount { get; set; }
 
-        [JsonProperty("sortCode")]
-        public string SortCode { get; set; }
+            [JsonProperty("sortCode")]
+            public string SortCode { get; set; }
 
-        [JsonProperty("narration")]
-        public string Narration { get; set; }
+            [JsonProperty("narration")]
+            public string Narration { get; set; }
 
-        [JsonProperty("accountNumber")]
-        public string AccountNumber { get; set; }
+            [JsonProperty("accountNumber")]
+            public string AccountNumber { get; set; }
 
-        [JsonProperty("accountName")]
-        public string AccountName { get; set; }
+            [JsonProperty("accountName")]
+            public string AccountName { get; set; }
 
-        [JsonProperty("metadata")]
-        public ExternalMetadata Metadata { get; set; }
+            [JsonProperty("metadata")]
+            public ExternalMetadata Metadata { get; set; }
+        
+
+
 
         public class ExternalMetadata
         {

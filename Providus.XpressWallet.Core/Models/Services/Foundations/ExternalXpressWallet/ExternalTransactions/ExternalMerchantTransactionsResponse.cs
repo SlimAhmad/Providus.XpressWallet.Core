@@ -23,7 +23,7 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressW
         public class ExternalMetadata
         {
             [JsonProperty("amount")]
-            public int Amount { get; set; }
+            public string Amount { get; set; }
 
             [JsonProperty("currency")]
             public string Currency { get; set; }
@@ -97,10 +97,10 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressW
             public ExternalMetadata Metadata { get; set; }
 
             [JsonProperty("balance_after")]
-            public int? BalanceAfter { get; set; }
+            public double BalanceAfter { get; set; }
 
             [JsonProperty("balance_before")]
-            public int? BalanceBefore { get; set; }
+            public double BalanceBefore { get; set; }
 
             [JsonProperty("reference")]
             public string Reference { get; set; }

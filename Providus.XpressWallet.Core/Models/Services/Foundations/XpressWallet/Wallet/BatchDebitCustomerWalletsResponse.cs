@@ -17,8 +17,29 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wa
 
         [JsonProperty("message")]
         public string Message { get; set; }
-        
-        public class Accepted
+
+        public class DataResponse
+        {
+            [JsonProperty("all_references")]
+            public List<string> AllReferences { get; set; }
+
+            [JsonProperty("passed_references")]
+            public List<object> PassedReferences { get; set; }
+
+            [JsonProperty("failed_references")]
+            public List<string> FailedReferences { get; set; }
+
+            [JsonProperty("reference")]
+            public string Reference { get; set; }
+
+            [JsonProperty("merchantId")]
+            public string MerchantId { get; set; }
+
+            [JsonProperty("results")]
+            public List<Result> Results { get; set; }
+        }
+
+        public class Result
         {
             [JsonProperty("amount")]
             public int Amount { get; set; }
@@ -29,23 +50,15 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wa
             [JsonProperty("customerId")]
             public string CustomerId { get; set; }
 
-            [JsonProperty("walletId")]
-            public string WalletId { get; set; }
+            [JsonProperty("status")]
+            public string Status { get; set; }
+
+            [JsonProperty("reason")]
+            public string Reason { get; set; }
         }
 
-        public class DataResponse
-        {
-            [JsonProperty("accepted")]
-            public List<Accepted> Accepted { get; set; }
 
-            [JsonProperty("rejected")]
-            public List<object> Rejected { get; set; }
-
-            [JsonProperty("batchReference")]
-            public string BatchReference { get; set; }
-        }
-
-        
+           
 
 
     }

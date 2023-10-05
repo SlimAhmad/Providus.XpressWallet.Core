@@ -5,25 +5,25 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
     public interface IWalletClient
     {
 
-        ValueTask<CreateWallet> PostCreateWalletAsync(
+        ValueTask<CreateWallet> CreateWalletAsync(
                   CreateWallet externalCreateWallet);
-        ValueTask<AllWallets> GetAllWalletsAsync();
-        ValueTask<CustomerWallet> GetCustomerWalletAsync(string customerId);
-        ValueTask<CreditWallet> PostCreditWalletAsync(
+        ValueTask<AllWallets> RetrieveAllWalletsAsync();
+        ValueTask<CustomerWallet> RetrieveCustomerWalletAsync(string customerId);
+        ValueTask<CreditWallet> CreditWalletAsync(
             CreditWallet externalCreditWallet);
-        ValueTask<DebitWallet> PostDebitWalletAsync(
+        ValueTask<DebitWallet> DebitWalletAsync(
             DebitWallet externalDebitWallet);
-        ValueTask<FreezeWallet> PostFreezeWalletAsync(
+        ValueTask<FreezeWallet> FreezeWalletAsync(
             FreezeWallet externalFreezeWallet);
-        ValueTask<UnfreezeWallet> PostUnfreezeWalletAsync(
+        ValueTask<UnfreezeWallet> UnfreezeWalletAsync(
             UnfreezeWallet externalUnfreezeWallet);
-        ValueTask<BatchDebitCustomerWallets> PostBatchDebitCustomerWalletsAsync(
+        ValueTask<BatchDebitCustomerWallets> BatchDebitCustomerWalletsAsync(
             BatchDebitCustomerWallets externalBatchDebitCustomerWallets);
-        ValueTask<BatchCreditCustomerWallets> PostBatchCreditCustomerWalletsAsync(
+        ValueTask<BatchCreditCustomerWallets> BatchCreditCustomerWalletsAsync(
             BatchCreditCustomerWallets externalBatchCreditCustomerWallets);
-        ValueTask<CustomerCreditCustomerWallet> PostCustomerCreditCustomerWalletAsync(
+        ValueTask<CustomerCreditCustomerWallet> CustomerCreditCustomerWalletAsync(
             CustomerCreditCustomerWallet externalCustomerCreditCustomerWallet);
-        ValueTask<FundMerchantSandBoxWallet> PostFundMerchantSandBoxWalletAsync(
+        ValueTask<FundMerchantSandBoxWallet> FundMerchantSandBoxWalletAsync(
             FundMerchantSandBoxWallet externalFundMerchantSandBoxWallet);
     }
 }

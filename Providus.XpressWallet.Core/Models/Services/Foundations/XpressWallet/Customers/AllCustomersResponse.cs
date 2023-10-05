@@ -27,6 +27,9 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Cu
             [JsonProperty("bvn")]
             public string Bvn { get; set; }
 
+            [JsonProperty("address")]
+            public string Address { get; set; }
+
             [JsonProperty("firstName")]
             public string FirstName { get; set; }
 
@@ -51,11 +54,20 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Cu
             [JsonProperty("dateOfBirth")]
             public string DateOfBirth { get; set; }
 
+            [JsonProperty("metadata")]
+            public MetadataResponse Metadata { get; set; }
+
+            [JsonProperty("tier")]
+            public string Tier { get; set; }
+
             [JsonProperty("createdAt")]
             public DateTime CreatedAt { get; set; }
 
             [JsonProperty("updatedAt")]
             public DateTime UpdatedAt { get; set; }
+
+            [JsonProperty("deletedAt")]
+            public object DeletedAt { get; set; }
 
             [JsonProperty("walletId")]
             public string WalletId { get; set; }
@@ -63,6 +75,12 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Cu
 
         public class MetadataResponse
         {
+            [JsonProperty("even-more")]
+            public string EvenMore { get; set; }
+
+            [JsonProperty("additional-data")]
+            public string AdditionalData { get; set; }
+
             [JsonProperty("page")]
             public int Page { get; set; }
 
