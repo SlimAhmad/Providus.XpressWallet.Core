@@ -4,6 +4,17 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <Title>Providus.XpressWallet.Core</Title>
+    <Company>Panda-tut Enterprises Limited</Company>
+    <Authors>Ahmad Salim</Authors>
+    <Description>Providus.XpressWallet.Core is a Standard-Compliant .NET library built on top of Providus Banks XpressWallet API RESTful endpoints to enable software engineers to develop FinTech solutions in .NET.</Description>
+    <Copyright>Panda-tut Enterprises Limited 2023 (c)</Copyright>
+    <PackageIcon>xpresswallet.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/SlimAhmad/Providus.XpressWallet.Core</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>The Standard,XpresWallet,Wallet,.NET</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,5 +26,19 @@
 		<InternalsVisibleTo Include="Providus.XpressWallet.Core.Tests.Unit" />
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 		<InternalsVisibleTo Include="Providus.XpressWallet.Core.Tests.Acceptance" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="xpresswallet.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 </Project>
