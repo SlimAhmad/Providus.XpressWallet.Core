@@ -167,7 +167,7 @@ namespace Providus.XpressWallet.Core.Clients.Transactions
             }
         }
 
-        public async ValueTask<DownloadCustomerTransaction> RetrieveDownloadCustomerTransactionAsync(string customerId)
+        public async ValueTask<DownloadCustomerTransaction> DownloadCustomerTransactionAsync(string customerId)
         {
               try
             {
@@ -198,7 +198,7 @@ namespace Providus.XpressWallet.Core.Clients.Transactions
             }
         }
 
-        public async ValueTask<DownloadMerchantTransaction> RetrieveDownloadMerchantTransactionAsync()
+        public async ValueTask<DownloadMerchantTransaction> DownloadMerchantTransactionAsync()
         {
               try
             {

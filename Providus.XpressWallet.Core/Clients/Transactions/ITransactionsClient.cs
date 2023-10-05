@@ -18,7 +18,7 @@ namespace Providus.XpressWallet.Core.Clients.Transactions
         ValueTask<ApproveTransaction> ApproveTransactionAsync(
             ApproveTransaction approveTransaction);
         ValueTask<DeclinePendingTransaction> DeclinePendingTransactionAsync(string transactionId);
-        ValueTask<DownloadCustomerTransaction> RetrieveDownloadCustomerTransactionAsync(string customerId);
-        ValueTask<DownloadMerchantTransaction> RetrieveDownloadMerchantTransactionAsync();
+        ValueTask<DownloadCustomerTransaction> DownloadCustomerTransactionAsync(string customerId);
+        ValueTask<DownloadMerchantTransaction> DownloadMerchantTransactionAsync();
     }
 }
