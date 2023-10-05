@@ -12,15 +12,15 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
             {
                 Request = new CustomerCreditCustomerWalletRequest
                 {
-                    BatchReference = "testcustomer3customer@energywalletng",
-                    CustomerId = "e8a17512-0f30-4e82-a648-16540baf746e",
+                    BatchReference = Guid.NewGuid().ToString(),
+                    CustomerId = Guid.NewGuid().ToString(),
                     Recipients = new List<CustomerCreditCustomerWalletRequest.Recipient> 
                     { 
                         new CustomerCreditCustomerWalletRequest.Recipient
                         {
                            Amount = 50,
-                           CustomerId = "183adcd3-4695-496a-8c25-10715cdfc45f",
-                           Reference = "testcustomer2customer@energywallet"
+                           CustomerId = Guid.NewGuid().ToString(),
+                           Reference = Guid.NewGuid().ToString()
                         } 
                     }
                 }
