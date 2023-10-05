@@ -35,9 +35,9 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
                                 content: externalCustomerBankTransferRequest);
         }
         public async ValueTask<ExternalMerchantBatchBankTransferResponse> PostMerchantBatchBankTransferAsync(
-            ExternalMerchantBatchBankTransferRequest externalMerchantBatchBankTransferRequest)
+            List<ExternalMerchantBatchBankTransferRequest> externalMerchantBatchBankTransferRequest)
         {
-            return await PostAsync<ExternalMerchantBatchBankTransferRequest, ExternalMerchantBatchBankTransferResponse>(
+            return await PostAsync<List<ExternalMerchantBatchBankTransferRequest>, ExternalMerchantBatchBankTransferResponse>(
                                 relativeUrl: $"transfer/bank/batch",
                                 content: externalMerchantBatchBankTransferRequest);
         }

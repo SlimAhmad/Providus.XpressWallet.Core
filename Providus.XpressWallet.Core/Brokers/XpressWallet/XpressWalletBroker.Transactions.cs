@@ -33,7 +33,7 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
             string search,string category, string type, int page, int perPage)
         {
             return await GetAsync<ExternalBatchTransactionsResponse>(
-                                  relativeUrl: $"transaction/batch?search=r{search}&{category}&type={type}&page={page}&perPage={perPage}"
+                                  relativeUrl: $"transaction/batch?search={search}&category={category}&type={type}&page={page}&perPage={perPage}"
                                   );
         }
         public async ValueTask<ExternalBatchTransactionDetailsResponse> GetBatchTransactionDetailsAsync(string reference)
@@ -49,7 +49,8 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
                                   relativeUrl: $"wallet/reverse-batch-transaction",
                                   content: externalReverseBatchTransactionRequest);
         }
-        public async ValueTask<ExternalPendingTransactionResponse> GetPendingTransactionsAsync(int page, string type)
+        public async ValueTask<ExternalPendingTransactionResponse> GetPendingTransactionsAsync(
+            int page, string type)
         {
             return await GetAsync<ExternalPendingTransactionResponse>(
                                   relativeUrl: $"transaction/pending?page={page}&type={type}"

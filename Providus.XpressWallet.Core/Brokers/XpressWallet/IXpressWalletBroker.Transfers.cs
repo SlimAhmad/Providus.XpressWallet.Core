@@ -12,7 +12,7 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
         ValueTask<ExternalCustomerBankTransferResponse> PostCustomerBankTransferAsync(
             ExternalCustomerBankTransferRequest externalCustomerBankTransferRequest);
         ValueTask<ExternalMerchantBatchBankTransferResponse> PostMerchantBatchBankTransferAsync(
-            ExternalMerchantBatchBankTransferRequest  externalMerchantBatchBankTransferRequest);
+            List<ExternalMerchantBatchBankTransferRequest>  externalMerchantBatchBankTransferRequest);
         ValueTask<ExternalCustomerToCustomerWalletTransferResponse> PostCustomerToCustomerWalletTransferAsync(
             ExternalCustomerToCustomerWalletTransferRequest externalCustomerToCustomerWalletTransferRequest);
 

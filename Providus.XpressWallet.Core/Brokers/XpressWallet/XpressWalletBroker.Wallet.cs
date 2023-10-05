@@ -20,11 +20,12 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
                                     relativeUrl: $"wallet"
                                     );
         }
-        public async ValueTask<ExternalCustomerWalletResponse> GetCustomerWalletAsync(string customerId)
+        public async ValueTask<ExternalCustomerWalletResponse> GetCustomerWalletAsync(
+            string customerId)
         {
-            return await PostAsync<ExternalCustomerWalletResponse>(
-                                    relativeUrl: $"wallet/customer?customerId={customerId}",
-                                    content: null);
+            return await GetAsync<ExternalCustomerWalletResponse>(
+                                    relativeUrl: $"wallet/customer?customerId={customerId}"
+                                   );
         }
         public async ValueTask<ExternalCreditWalletResponse> PostCreditWalletAsync(
             ExternalCreditWalletRequest externalCreditWalletRequest)
