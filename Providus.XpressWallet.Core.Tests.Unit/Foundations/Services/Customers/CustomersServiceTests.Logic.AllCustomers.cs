@@ -38,15 +38,28 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                         NameMatch = customers.NameMatch,
                         PhoneNumber = customers.PhoneNumber,
                         UpdatedAt = customers.UpdatedAt,
+                        Metadata = new ExternalAllCustomersResponse.ExternalMetadata
+                        {
+                            AdditionalData = customers.Metadata.AdditionalData,
+                            EvenMore = customers.Metadata.EvenMore,
+                            Page = customers.Metadata.Page,
+                            TotalPages = customers.Metadata.TotalPages,
+                            TotalRecords = customers.Metadata.TotalRecords,
+                        },
+                        DeletedAt = customers.DeletedAt,
+                        Address = customers.Address,
+                        Tier = customers.Tier,
 
                     };
                 }).ToList(),
                 Metadata = new ExternalAllCustomersResponse.ExternalMetadata
               {
-                 Page = createRandomAllCustomersResponseProperties.Metadata.Page,
-                 TotalPages = createRandomAllCustomersResponseProperties.Metadata.TotalPages,
-                 TotalRecords = createRandomAllCustomersResponseProperties.Metadata.TotalRecords
-              },
+                    EvenMore = createRandomAllCustomersResponseProperties.Metadata.EvenMore,
+                    AdditionalData = createRandomAllCustomersResponseProperties.Metadata.AdditionalData,
+                    Page = createRandomAllCustomersResponseProperties.Metadata.Page,
+                    TotalPages = createRandomAllCustomersResponseProperties.Metadata.TotalPages,
+                    TotalRecords = createRandomAllCustomersResponseProperties.Metadata.TotalRecords
+                },
               Status = createRandomAllCustomersResponseProperties.Status
                    
             };
@@ -72,11 +85,24 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                         NameMatch = customers.NameMatch,
                         PhoneNumber = customers.PhoneNumber,
                         UpdatedAt = customers.UpdatedAt,
+                        Metadata = new AllCustomersResponse.MetadataResponse
+                        {
+                           AdditionalData = customers.Metadata.AdditionalData,
+                           EvenMore = customers.Metadata.EvenMore,
+                           Page = customers.Metadata.Page,
+                           TotalPages = customers.Metadata.TotalPages,
+                           TotalRecords = customers.Metadata.TotalRecords,
+                        },
+                        DeletedAt = customers.DeletedAt,
+                        Address = customers.Address,
+                        Tier = customers.Tier,
 
                     };
                 }).ToList(),
                 Metadata = new AllCustomersResponse.MetadataResponse
                 {
+                    EvenMore = createRandomAllCustomersResponseProperties.Metadata.EvenMore,
+                    AdditionalData = createRandomAllCustomersResponseProperties.Metadata.AdditionalData,
                     Page = createRandomAllCustomersResponseProperties.Metadata.Page,
                     TotalPages = createRandomAllCustomersResponseProperties.Metadata.TotalPages,
                     TotalRecords = createRandomAllCustomersResponseProperties.Metadata.TotalRecords

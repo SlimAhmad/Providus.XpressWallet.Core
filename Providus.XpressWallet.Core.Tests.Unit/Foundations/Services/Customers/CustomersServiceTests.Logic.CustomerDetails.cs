@@ -36,6 +36,14 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                  NameMatch = createRandomCustomerDetailsResponseProperties.Customer.NameMatch,
                  PhoneNumber = createRandomCustomerDetailsResponseProperties.Customer.PhoneNumber,
                  UpdatedAt = createRandomCustomerDetailsResponseProperties.Customer.UpdatedAt,
+                 Tier = createRandomCustomerDetailsResponseProperties.Customer.Tier,
+                 Address = createRandomCustomerDetailsResponseProperties.Customer.Address,
+                 DeletedAt = createRandomCustomerDetailsResponseProperties.Customer.DeletedAt,
+                 Metadata = new ExternalCustomerDetailsResponse.Metadata
+                 {
+                     AdditionalData = createRandomCustomerDetailsResponseProperties.Customer.Metadata.AdditionalData,
+                     EvenMore = createRandomCustomerDetailsResponseProperties.Customer.Metadata.EvenMore
+                 }
                  
               },
               
@@ -62,6 +70,14 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                     NameMatch = createRandomCustomerDetailsResponseProperties.Customer.NameMatch,
                     PhoneNumber = createRandomCustomerDetailsResponseProperties.Customer.PhoneNumber,
                     UpdatedAt = createRandomCustomerDetailsResponseProperties.Customer.UpdatedAt,
+                    Address = createRandomCustomerDetailsResponseProperties.Customer.Address,
+                    DeletedAt = createRandomCustomerDetailsResponseProperties.Customer.DeletedAt,
+                    Tier =  createRandomCustomerDetailsResponseProperties.Customer.Tier,
+                    Metadata = new CustomerDetailsResponse.Metadata
+                    {
+                        AdditionalData = createRandomCustomerDetailsResponseProperties.Customer.Metadata.AdditionalData,
+                        EvenMore = createRandomCustomerDetailsResponseProperties.Customer.Metadata.EvenMore
+                    }
                 },
                 Status = createRandomCustomerDetailsResponseProperties.Status
 

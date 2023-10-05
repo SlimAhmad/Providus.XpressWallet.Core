@@ -31,6 +31,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -40,19 +41,22 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
             var randomExternalBatchDebitCustomerWalletsResponse = new ExternalBatchDebitCustomerWalletsResponse
             {
 
-                Data = new ExternalBatchDebitCustomerWalletsResponse.ExternalData
+                Data = new ExternalBatchDebitCustomerWalletsResponse.DataResponse
                 {
-                    Accepted = ((List<dynamic>)createRandomBatchDebitCustomerWalletsResponseProperties.Data.Accepted).Select(accpeted =>
+                    Results = ((List<dynamic>)createRandomBatchDebitCustomerWalletsResponseProperties.Data.Results).Select(results =>
                     {
-                        return new ExternalBatchDebitCustomerWalletsResponse.Accepted
+                        return new ExternalBatchDebitCustomerWalletsResponse.Result
                         {
-                            CustomerId = accpeted.CustomerId,
-                            Amount = accpeted.Amount,
-                            Reference = accpeted.Reference,
+                            CustomerId = results.CustomerId,
+                            Amount = results.Amount,
+                            Reference = results.Reference,
+                            Status = results.Status,
+                            Reason = results.Reason,
+
                         };
                     }).ToList(),
-                    Rejected = createRandomBatchDebitCustomerWalletsResponseProperties.Data.Rejected,
-                    BatchReference = createRandomBatchDebitCustomerWalletsResponseProperties.Data.BatchReference
+                    FailedReferences = createRandomBatchDebitCustomerWalletsResponseProperties.Data.FailedReferences,
+                    AllReferences = createRandomBatchDebitCustomerWalletsResponseProperties.Data.AllReferences
                 },
                 Message = createRandomBatchDebitCustomerWalletsResponseProperties.Message,
                 Status = createRandomBatchDebitCustomerWalletsResponseProperties.Status
@@ -69,6 +73,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -78,20 +83,24 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
             {
                 Data = new BatchDebitCustomerWalletsResponse.DataResponse
                 {
-                    Accepted = ((List<dynamic>)createRandomBatchDebitCustomerWalletsResponseProperties.Data.Accepted).Select(accpeted =>
+                    Results = ((List<dynamic>)createRandomBatchDebitCustomerWalletsResponseProperties.Data.Results).Select(results =>
                     {
-                        return new BatchDebitCustomerWalletsResponse.Accepted
+                        return new BatchDebitCustomerWalletsResponse.Result
                         {
-                            CustomerId = accpeted.CustomerId,
-                            Amount = accpeted.Amount,
-                            Reference = accpeted.Reference,
+                            CustomerId = results.CustomerId,
+                            Amount = results.Amount,
+                            Reference = results.Reference,
+                            Status = results.Status,
+                            Reason = results.Reason,
+                           
                         };
                     }).ToList(),
-                    Rejected = createRandomBatchDebitCustomerWalletsResponseProperties.Data.Rejected,
-                    BatchReference = createRandomBatchDebitCustomerWalletsResponseProperties.Data.BatchReference
+                    FailedReferences = createRandomBatchDebitCustomerWalletsResponseProperties.Data.FailedReferences,
+                    AllReferences = createRandomBatchDebitCustomerWalletsResponseProperties.Data.AllReferences
                 },
                 Message = createRandomBatchDebitCustomerWalletsResponseProperties.Message,
-                Status = createRandomBatchDebitCustomerWalletsResponseProperties.Status
+                Status = createRandomBatchDebitCustomerWalletsResponseProperties.Status,
+               
             };
 
 

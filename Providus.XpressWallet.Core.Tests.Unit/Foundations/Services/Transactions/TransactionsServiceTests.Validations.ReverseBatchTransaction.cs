@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressWallet.ExternalTransactions;
-using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transactions.Exceptions;
-using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transactions;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transactions;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transactions.Exceptions;
 

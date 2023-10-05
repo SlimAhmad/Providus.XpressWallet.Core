@@ -33,7 +33,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 
             this.xPressWalletBrokerMock.Verify(broker =>
                 broker.PostMerchantBatchBankTransferAsync(
-                    It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                    It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                         Times.Never);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -72,154 +72,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 
             this.xPressWalletBrokerMock.Verify(broker =>
                 broker.PostMerchantBatchBankTransferAsync(
-                    It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                    It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                         Times.Never);
-
-            this.xPressWalletBrokerMock.VerifyNoOtherCalls();
-            this.dateTimeBrokerMock.VerifyNoOtherCalls();
-        }
-
-        [Theory]
-        [InlineData(null,null,null,null, 0)]
-        [InlineData("","","","", 0)]
-        [InlineData("  "," "," "," ", 0)]
-        public async Task ShouldThrowValidationExceptionOnPostMerchantBatchBankTransferIfMerchantBatchBankTransferIsInvalidAsync(
-           string invalidAccountNumber,string invalidAccountName,string invalidNarration,string invalidSortCode, int invalidAmount)
-        {
-            // given
-            var MerchantBatchBankTransfer = new MerchantBatchBankTransfer
-            {
-                Request = new MerchantBatchBankTransferRequest
-                {
-                   AccountNumber = invalidAccountNumber,
-                   Amount = invalidAmount,
-                   AccountName = invalidAccountName,
-                   Narration = invalidNarration,
-                   SortCode = invalidSortCode,
-
-
-
-                }
-            };
-
-            var invalidMerchantBatchBankTransferException = new InvalidTransfersException();
-
-            invalidMerchantBatchBankTransferException.AddData(
-                key: nameof(MerchantBatchBankTransferRequest.AccountName),
-                values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-                key: nameof(MerchantBatchBankTransferRequest.Amount),
-                values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.Narration),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.SortCode),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.AccountNumber),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.Metadata),
-              values: "Value is required");
-
-
-
-
-
-
-            var expectedTransfersValidationException =
-                new TransfersValidationException(invalidMerchantBatchBankTransferException);
-
-            // when
-            ValueTask<MerchantBatchBankTransfer> MerchantBatchBankTransferTask =
-                this.transfersService.PostMerchantBatchBankTransferRequestAsync(MerchantBatchBankTransfer);
-
-            TransfersValidationException actualTransfersValidationException =
-                await Assert.ThrowsAsync<TransfersValidationException>(MerchantBatchBankTransferTask.AsTask);
-
-            // then
-            actualTransfersValidationException.Should().BeEquivalentTo(
-                expectedTransfersValidationException);
-
-            this.xPressWalletBrokerMock.VerifyNoOtherCalls();
-            this.dateTimeBrokerMock.VerifyNoOtherCalls();
-        }
-
-        [Fact]
-        public async Task ShouldThrowValidationExceptionOnPostMerchantBatchBankTransferIfPostMerchantBatchBankTransferIsEmptyAsync()
-        {
-            // given
-            var MerchantBatchBankTransfer = new MerchantBatchBankTransfer
-            {
-                Request = new MerchantBatchBankTransferRequest
-                {
-
-                    AccountNumber = string.Empty,
-                    AccountName = string.Empty,
-                    Narration = string.Empty,
-                    SortCode = string.Empty,
-                    
-
-
-                }
-            };
-
-            var invalidMerchantBatchBankTransferException = new InvalidTransfersException();
-
-
-            invalidMerchantBatchBankTransferException.AddData(
-             key: nameof(MerchantBatchBankTransferRequest.AccountName),
-             values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-                key: nameof(MerchantBatchBankTransferRequest.Amount),
-                values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.Narration),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.SortCode),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.AccountNumber),
-              values: "Value is required");
-
-            invalidMerchantBatchBankTransferException.AddData(
-              key: nameof(MerchantBatchBankTransferRequest.Metadata),
-              values: "Value is required");
-
-
-
-
-
-
-
-
-
-
-            var expectedTransfersValidationException =
-                new TransfersValidationException(invalidMerchantBatchBankTransferException);
-
-            // when
-            ValueTask<MerchantBatchBankTransfer> MerchantBatchBankTransferTask =
-                this.transfersService.PostMerchantBatchBankTransferRequestAsync(MerchantBatchBankTransfer);
-
-            TransfersValidationException actualTransfersValidationException =
-                await Assert.ThrowsAsync<TransfersValidationException>(
-                    MerchantBatchBankTransferTask.AsTask);
-
-            // then
-            actualTransfersValidationException.Should().BeEquivalentTo(
-                expectedTransfersValidationException);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
             this.dateTimeBrokerMock.VerifyNoOtherCalls();

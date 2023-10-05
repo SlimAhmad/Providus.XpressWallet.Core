@@ -54,8 +54,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                         .AreEqual;
         }
 
-        private Expression<Func<ExternalMerchantBatchBankTransferRequest, bool>> SameExternalMerchantBatchBankTransferRequestAs(
-            ExternalMerchantBatchBankTransferRequest expectedExternalMerchantBatchBankTransferRequest)
+        private Expression<Func<List<ExternalMerchantBatchBankTransferRequest>, bool>> SameExternalMerchantBatchBankTransferRequestAs(
+            List<ExternalMerchantBatchBankTransferRequest> expectedExternalMerchantBatchBankTransferRequest)
         {
             return actualExternalMerchantBatchBankTransferRequest =>
                 this.compareLogic.Compare(
@@ -263,9 +263,11 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 
         #region MerchantBatchBankTransferRequest 
 
-        private static dynamic CreateRandomMerchantBatchBankTransferRequestProperties()
+        private static List<dynamic> CreateRandomMerchantBatchBankTransferRequestProperties()
         {
-            return new
+
+            return Enumerable.Range(0, GetRandomNumber()).Select(
+            item => new
             {
 
                 Amount = GetRandomNumber(),
@@ -275,7 +277,10 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 AccountName = GetRandomString(),
                 Metadata = GetRandomMerchantBatchBankTransferRequestMetaData(),
 
-            };
+
+
+            }).ToList<dynamic>();
+
         }
 
         private static dynamic GetRandomMerchantBatchBankTransferRequestMetaData()
@@ -288,7 +293,6 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 
             };
         }
-
 
         #endregion
 

@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using Tynamix.ObjectFiller;
 using RESTFulSense.Exceptions;
 using System.Net;
+using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Customers;
 
 
 namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
@@ -190,12 +191,28 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                 CreatedAt = GetRandomDate(),
                 UpdatedAt = GetRandomDate(),
                 WalletId = GetRandomString(),
-
+                Address = GetRandomString(),
+                DeletedAt = GetRandomString(),
+                Tier = GetRandomString(),
+                Metadata = GetRandomCustomerDetailsResponseMetaData()
 
 
             };
         }
 
+        private static dynamic GetRandomCustomerDetailsResponseMetaData()
+        {
+            return new
+            {
+
+               
+                EvenMore = GetRandomString(),
+                AdditionalData = GetRandomString(),
+         
+
+
+            };
+        }
 
         #endregion
 
@@ -233,7 +250,10 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
                 CreatedAt = GetRandomDate(),
                 UpdatedAt = GetRandomDate(),
                 WalletId = GetRandomString(),
-
+                Address = GetRandomString(),
+                DeletedAt = GetRandomString(),
+                Tier = GetRandomString(),
+                Metadata = GetRandomAllCustomersResponseMetaData()
 
             }).ToList<dynamic>();
 
@@ -244,7 +264,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
         {
             return new
             {
-
+                EvenMore = GetRandomString(),
+                AdditionalData = GetRandomString(),
                 Page = GetRandomNumber(),
                 TotalRecords = GetRandomNumber(),
                 TotalPages = GetRandomNumber(),
@@ -252,6 +273,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Customers
 
             };
         }
+
+ 
 
         #endregion
 

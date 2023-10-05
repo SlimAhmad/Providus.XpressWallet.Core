@@ -27,6 +27,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
+                       
                     };
 
                 }).ToList()
@@ -45,6 +47,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -112,6 +115,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -128,6 +132,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -184,6 +189,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -200,6 +206,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -263,6 +270,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -279,6 +287,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -341,6 +350,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -357,6 +367,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -418,6 +429,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -434,6 +446,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()
@@ -495,6 +508,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                     {
                         Amount = transactions.Amount,
                         CustomerId = transactions.CustomerId,
+                        Reference = transactions.Reference,
                     };
 
                 }).ToList()
@@ -511,6 +525,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                         {
                             Amount = transactions.Amount,
                             CustomerId = transactions.CustomerId,
+                            Reference = transactions.Reference,
                         };
 
                     }).ToList()

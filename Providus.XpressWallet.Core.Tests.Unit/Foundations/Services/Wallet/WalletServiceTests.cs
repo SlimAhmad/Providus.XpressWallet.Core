@@ -142,7 +142,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
         private static string[] CreateRandomStringArray() =>
             new Filler<string[]>().Create();
 
-        private static List<string> CreateRandomStringList() =>
+        private static List<string> GetRandomStringList() =>
           new Filler<List<string>>().Create();
 
         private static bool GetRandomBoolean() =>
@@ -435,16 +435,19 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
 
             return new
             {
-                Accepted = GetRandomBatchDebitCustomerWalletsResponseAccepted(),
-                Rejected = GetRandomBatchDebitCustomerWalletsResponseRejected(),
-                BatchReference = GetRandomString(),
+                Results = GetRandomBatchDebitCustomerWalletsResponseResults(),
+                AllReferences = GetRandomStringList(),
+                PassedReferences = new object(),
+                FailedReferences = GetRandomStringList(),
+                Reference = GetRandomString(),
+                MerchantId = GetRandomString(),
 
 
             };
 
         }
 
-        private static List<dynamic> GetRandomBatchDebitCustomerWalletsResponseAccepted()
+        private static List<dynamic> GetRandomBatchDebitCustomerWalletsResponseResults()
         {
 
             return Enumerable.Range(0, GetRandomNumber()).Select(
@@ -453,22 +456,15 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                 Amount = GetRandomNumber(),
                 Reference = GetRandomString(),
                 CustomerId = GetRandomString(),
-                WalletId = GetRandomString(),
+                Status = GetRandomString(),
+                Reason = GetRandomString(),
+
 
             }).ToList<dynamic>();
 
         }
 
-        private static List<object> GetRandomBatchDebitCustomerWalletsResponseRejected()
-        {
-
-           return Enumerable.Range(0, GetRandomNumber()).Select(
-           item => new
-           {
-
-           }).ToList<dynamic>();
-
-        }
+      
 
 
 

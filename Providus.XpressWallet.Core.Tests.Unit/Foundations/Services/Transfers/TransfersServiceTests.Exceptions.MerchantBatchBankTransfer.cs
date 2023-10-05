@@ -3,13 +3,7 @@ using Moq;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressWallet.ExternalTransfers;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers.Exceptions;
-using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers;
 using RESTFulSense.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 {
@@ -23,33 +17,40 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
             dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-               AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-               AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-               Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
-               {
-                  CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-               },
-               Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-               SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-               Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                return new ExternalMerchantBatchBankTransferRequest
+                {
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
 
             var httpResponseUrlNotFoundException =
@@ -66,7 +67,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                     invalidConfigurationTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                     .ThrowsAsync(httpResponseUrlNotFoundException);
 
             // when
@@ -83,7 +84,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -100,35 +101,43 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
             dynamic createRandomMerchantBatchBankTransferRequestProperties =
              CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                     
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-               
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                     AccountName = batchTransfer.AccountName,
+                     AccountNumber = batchTransfer.AccountNumber,
+                     Amount = batchTransfer.Amount,
+                     Narration = batchTransfer.Narration,
+                     SortCode = batchTransfer.SortCode,
+                     Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                     {
+                         CustomerData = batchTransfer.Metadata.CustomerData,
+                     }
+                };
+            }).ToList();
+
+
+
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+        
             };
 
             var unauthorizedTransfersException =
@@ -138,7 +147,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 new TransfersDependencyException(unauthorizedTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                      .ThrowsAsync(unauthorizedException);
 
             // when
@@ -155,7 +164,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -170,33 +179,40 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
 
 
@@ -214,7 +230,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                     notFoundTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                     .ThrowsAsync(httpResponseNotFoundException);
 
             // when
@@ -231,7 +247,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyValidationException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -246,33 +262,40 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
 
             var httpResponseBadRequestException =
@@ -289,7 +312,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                     invalidTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                     .ThrowsAsync(httpResponseBadRequestException);
 
             // when
@@ -306,7 +329,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyValidationException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -321,33 +344,40 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
 
             var httpResponseTooManyRequestsException =
@@ -364,7 +394,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                     excessiveCallTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                      .ThrowsAsync(httpResponseTooManyRequestsException);
 
             // when
@@ -380,7 +410,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyValidationException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -395,33 +425,40 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
 
             var httpResponseException =
@@ -438,7 +475,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                     failedServerTransfersException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                 broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                      .ThrowsAsync(httpResponseException);
 
             // when
@@ -454,7 +491,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersDependencyException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();
@@ -469,34 +506,42 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 dynamic createRandomMerchantBatchBankTransferRequestProperties =
                  CreateRandomMerchantBatchBankTransferRequestProperties();
 
-            var fundTransfersRequest = new ExternalMerchantBatchBankTransferRequest
+            var fundTransfersRequest = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
             {
-                AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                return new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                },
-                Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-            };
+                    AccountName = batchTransfer.AccountName,
+                    AccountNumber = batchTransfer.AccountNumber,
+                    Amount = batchTransfer.Amount,
+                    Narration = batchTransfer.Narration,
+                    SortCode = batchTransfer.SortCode,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = batchTransfer.Metadata.CustomerData,
+                    }
+                };
+            }).ToList();
 
             var fundTransfers = new MerchantBatchBankTransfer
             {
-                Request = new MerchantBatchBankTransferRequest
+                Request = ((List<dynamic>)createRandomMerchantBatchBankTransferRequestProperties).Select(batchTransfer =>
                 {
-                    AccountName = createRandomMerchantBatchBankTransferRequestProperties.AccountName,
-                    AccountNumber = createRandomMerchantBatchBankTransferRequestProperties.AccountNumber,
-                    Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                    return new MerchantBatchBankTransferRequest
                     {
-                        CustomerData = createRandomMerchantBatchBankTransferRequestProperties.Metadata.CustomerData
-                    },
-                    Narration = createRandomMerchantBatchBankTransferRequestProperties.Narration,
-                    SortCode = createRandomMerchantBatchBankTransferRequestProperties.SortCode,
-                    Amount = createRandomMerchantBatchBankTransferRequestProperties.Amount,
-                },
+                        AccountName = batchTransfer.AccountName,
+                        AccountNumber = batchTransfer.AccountNumber,
+                        Amount = batchTransfer.Amount,
+                        Narration = batchTransfer.Narration,
+                        SortCode = batchTransfer.SortCode,
+                        Metadata = new MerchantBatchBankTransferRequest.MetadataResponse
+                        {
+                            CustomerData = batchTransfer.Metadata.CustomerData,
+                        }
+                    };
+                }).ToList()
+
             };
+
             var serviceException = new Exception();
 
             var failedTransfersServiceException =
@@ -506,7 +551,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 new TransfersServiceException(failedTransfersServiceException);
 
             this.xPressWalletBrokerMock.Setup(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()))
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()))
                     .ThrowsAsync(serviceException);
 
             // when
@@ -522,7 +567,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
                 expectedTransfersServiceException);
 
             this.xPressWalletBrokerMock.Verify(broker =>
-                broker.PostMerchantBatchBankTransferAsync(It.IsAny<ExternalMerchantBatchBankTransferRequest>()),
+                broker.PostMerchantBatchBankTransferAsync(It.IsAny<List<ExternalMerchantBatchBankTransferRequest>>()),
                     Times.Once);
 
             this.xPressWalletBrokerMock.VerifyNoOtherCalls();

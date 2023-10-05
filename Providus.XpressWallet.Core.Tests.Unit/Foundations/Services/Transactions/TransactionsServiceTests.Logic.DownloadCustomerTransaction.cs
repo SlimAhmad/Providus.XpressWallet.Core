@@ -35,32 +35,6 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                         Description = data.Description,
                         Destination = data.Destination,
                         Fee = data.Fee,
-                        Metadata = new ExternalDownloadCustomerTransactionResponse.Metadata
-                        {
-                           CustomerWallet = data.Metadata.CustomerWallet,
-                           Reference = data.Metadata.Reference,
-                           AccountName = data.Metadata.AccountName,
-                           AccountNumber = data.Metadata.AccountNumber,
-                           Amount = data.Metadata.Amount,
-                           CustomData = new ExternalDownloadCustomerTransactionResponse.CustomData
-                           {
-                               CustomerData = data.Metadata.CustomData.CustomerData,
-                               MoreData = data.Metadata.CustomData.MoreData,
-                               SomeData = data.Metadata.CustomData.SomeData,
-                           },
-                           CustomerId = data.Metadata.CustomerId,
-                           CustomerName = data.Metadata.CustomerName,
-                           Fee = data.Metadata.Fee,
-                           Narration = data.Metadata.Narration,
-                           SessionId = data.Metadata.SessionId,
-                           SortCode = data.Metadata.SortCode,
-                           SourceCustomerId = data.Metadata.SourceCustomerId,
-                           SourceCustomerWallet = data.Metadata.SourceCustomerWallet,
-                           TargetCustomerId = data.Metadata.TargetCustomerId,
-                           TargetCustomerWallet = data.Metadata.TargetCustomerWallet,
-                           TransactionReference = data.Metadata.TransactionReference,
-                         
-                        },
                         Reference = data.Reference,
                         Source = data.Source,
                         Status = data.Status,
@@ -68,6 +42,45 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                         Type = data.Type,
                         UpdatedAt = data.UpdatedAt,
                         Vat = data.Vat,
+                        Metadata = new ExternalDownloadCustomerTransactionResponse.Metadata
+                        {
+                           CustomerWallet = data.Metadata.CustomerWallet,
+                           BankName = data.Metadata.BankName,
+                           Charges = data.Metadata.Charges,
+                           MerchantId = data.Metadata.MerchantId,
+                           NameEnquiryRef = data.Metadata.NameEnquiryRef,
+                           SessionID = data.Metadata.SessionID,
+                           TotalAmount = data.Metadata.TotalAmount,
+                           Vat = data.Metadata.Vat,
+                           WalletAccountName = data.Metadata.WalletAccountName,
+                           WalletAccountNumber = data.Metadata.WalletAccountNumber,
+                           WalletId = data.Metadata.WalletId,
+                           CustomerId = data.Metadata.CustomerId,
+                           CustomerName = data.Metadata.CustomerName,
+                           Fee = data.Metadata.Fee,
+                           Narration = data.Metadata.Narration,
+                           SortCode = data.Metadata.SortCode,
+                           SourceCustomerId = data.Metadata.SourceCustomerId,
+                           SourceCustomerWallet = data.Metadata.SourceCustomerWallet,
+                           TargetCustomerId = data.Metadata.TargetCustomerId,
+                           TargetCustomerWallet = data.Metadata.TargetCustomerWallet,
+                           AdditionalMetadata = new ExternalDownloadCustomerTransactionResponse.AdditionalMetadata
+                           {
+                              CustomerData = data.Metadata.AdditionalMetadata.CustomerData,
+                           },
+                           AccountName = data.Metadata.AccountName,
+                           AccountNumber = data.Metadata.AccountNumber,
+                           Amount = data.Metadata.Amount,
+                           CustomData = new ExternalDownloadCustomerTransactionResponse.CustomData
+                           {
+                               
+                               MoreData = data.Metadata.CustomData.MoreData,
+                               SomeData = data.Metadata.CustomData.SomeData,
+                           },
+                    
+                              
+                        },
+                    
                     };
                 }).ToList(), 
                 Status = createRandomDownloadCustomerTransactionResponseProperties.Status
@@ -95,13 +108,26 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                         Metadata = new DownloadCustomerTransactionResponse.Metadata
                         {
                             CustomerWallet = data.Metadata.CustomerWallet,
-                            Reference = data.Metadata.Reference,
+                            BankName = data.Metadata.BankName,
+                            Charges = data.Metadata.Charges,
+                            MerchantId = data.Metadata.MerchantId,
+                            NameEnquiryRef = data.Metadata.NameEnquiryRef,
+                            SessionID = data.Metadata.SessionID,
+                            TotalAmount = data.Metadata.TotalAmount,
+                            Vat = data.Metadata.Vat,
+                            WalletAccountName = data.Metadata.WalletAccountName,
+                            WalletAccountNumber = data.Metadata.WalletAccountNumber,
+                            WalletId = data.Metadata.WalletId,
+                            AdditionalMetadata = new DownloadCustomerTransactionResponse.AdditionalMetadata
+                            {
+                                CustomerData = data.Metadata.AdditionalMetadata.CustomerData,
+                            },
                             AccountName = data.Metadata.AccountName,
                             AccountNumber = data.Metadata.AccountNumber,
                             Amount = data.Metadata.Amount,
                             CustomData = new DownloadCustomerTransactionResponse.CustomData
                             {
-                                CustomerData = data.Metadata.CustomData.CustomerData,
+
                                 MoreData = data.Metadata.CustomData.MoreData,
                                 SomeData = data.Metadata.CustomData.SomeData,
                             },
@@ -109,13 +135,12 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                             CustomerName = data.Metadata.CustomerName,
                             Fee = data.Metadata.Fee,
                             Narration = data.Metadata.Narration,
-                            SessionId = data.Metadata.SessionId,
                             SortCode = data.Metadata.SortCode,
                             SourceCustomerId = data.Metadata.SourceCustomerId,
                             SourceCustomerWallet = data.Metadata.SourceCustomerWallet,
                             TargetCustomerId = data.Metadata.TargetCustomerId,
                             TargetCustomerWallet = data.Metadata.TargetCustomerWallet,
-                            TransactionReference = data.Metadata.TransactionReference,
+
 
                         },
                         Reference = data.Reference,

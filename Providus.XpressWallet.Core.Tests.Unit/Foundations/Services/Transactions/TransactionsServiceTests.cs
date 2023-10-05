@@ -11,6 +11,7 @@ using RESTFulSense.Exceptions;
 using System.Data;
 using System.Linq.Expressions;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using Tynamix.ObjectFiller;
 
 
@@ -168,7 +169,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return  new
             {
 
-                Amount = GetRandomNumber(),
+                Amount = GetRandomString(),
                 Currency = GetRandomString(),
                 DestinationBankCode = GetRandomString(),
                 DestinationAccountNumber = GetRandomString(),
@@ -596,23 +597,32 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             return new
             {
 
-                Amount = GetRandomNumber(),
-                SortCode = GetRandomString(),
-                Narration = GetRandomString(),
-                CustomerId = GetRandomString(),
-                AccountName = GetRandomString(),
-                AccountNumber = GetRandomString(),
-                SessionId = GetRandomString(),
-                TransactionReference = GetRandomString(),
                 TargetCustomerId = GetRandomString(),
                 SourceCustomerId = GetRandomString(),
                 TargetCustomerWallet = GetRandomString(),
                 SourceCustomerWallet = GetRandomString(),
+                Amount = GetRandomNumber(),
+                Charges = GetRandomNumber(),
+                BankName = GetRandomString(),
+                Vat = GetRandomNumber(),
+                WalletId = GetRandomString(),
+                SortCode = GetRandomString(),
+                Narration = GetRandomString(),
+                CustomerId = GetRandomString(),
+                AccountName = GetRandomString(),
+                TotalAmount = GetRandomNumber(),
+                AccountNumber = GetRandomString(),
+                WalletAccountName = GetRandomString(),
+                AdditionalMetadata = GetRandomDownloadCustomerTransactionResponseAdditionalMetaData(),
+                WalletAccountNumber = GetRandomString(),
+                MerchantId = GetRandomString(),
+                NameEnquiryRef = GetRandomString(),
+                SessionID = GetRandomString(),
+                Fee = GetRandomNumber(),
                 CustomData = GetRandomDownloadCustomerTransactionResponseCustomData(),
                 CustomerWallet = GetRandomString(),
                 CustomerName = GetRandomString(),
-                Fee = GetRandomNumber(),
-                Reference = GetRandomString(),
+
 
 
 
@@ -628,7 +638,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
 
                 SomeData = GetRandomString(),
                 MoreData = GetRandomString(),
-                CustomerData = GetRandomString(),
+       
 
 
 
@@ -637,15 +647,16 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
 
         }
 
-        private static dynamic GetRandomDownloadCustomerTransactionResponseSource()
+        private static dynamic GetRandomDownloadCustomerTransactionResponseAdditionalMetaData()
         {
 
             return new
             {
 
-                Type = GetRandomString(),
-                UserId = GetRandomString(),
-                WalletId = GetRandomString(),
+         
+                CustomerData = GetRandomString(),
+
+
 
 
             };
@@ -659,6 +670,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
             item => new
             {
 
+                SomeData = GetRandomString(),
+                MoreData = GetRandomString(),
                 Id = GetRandomString(),
                 Fee = GetRandomNumber(),
                 Vat = GetRandomNumber(),
@@ -677,6 +690,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transaction
                 Status = GetRandomString(),
                 CreatedAt = GetRandomDate(),
                 UpdatedAt = GetRandomDate(),
+
 
 
 

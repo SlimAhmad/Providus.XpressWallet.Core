@@ -83,11 +83,11 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
         }
 
         [Theory]
-        [InlineData(null,null)]
-        [InlineData("","")]
-        [InlineData("  "," ")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
         public async Task ShouldThrowValidationExceptionOnPostUnfreezeWalletIfUnfreezeWalletIsInvalidAsync(
-           string invalidPhoneNumber, string invalidAddress)
+           string invalidCustomerId)
         {
             // given
             var accountVerificationRequest = new UnfreezeWallet
@@ -95,7 +95,8 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                 Request = new UnfreezeWalletRequest
                 {
 
-                      CustomerId = invalidPhoneNumber,
+                      CustomerId = invalidCustomerId,
+                     
 
                 }
             };

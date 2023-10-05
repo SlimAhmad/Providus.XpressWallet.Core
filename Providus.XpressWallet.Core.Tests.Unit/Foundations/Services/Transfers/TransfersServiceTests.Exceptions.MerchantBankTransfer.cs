@@ -3,13 +3,7 @@ using Moq;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressWallet.ExternalTransfers;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers.Exceptions;
-using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers;
 using RESTFulSense.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Transfers
 {
