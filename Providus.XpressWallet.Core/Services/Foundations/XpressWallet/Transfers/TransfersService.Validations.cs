@@ -52,12 +52,8 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
                 (Rule: IsInvalid(merchantBatchBankTransfer.Request), Parameter: nameof(merchantBatchBankTransfer.Request)));
 
             Validate(
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.AccountNumber), Parameter: nameof(MerchantBatchBankTransferRequest.AccountNumber)),
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.AccountName), Parameter: nameof(MerchantBatchBankTransferRequest.AccountName)),
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.Amount), Parameter: nameof(MerchantBatchBankTransferRequest.Amount)),
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.SortCode), Parameter: nameof(MerchantBatchBankTransferRequest.SortCode)),
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.Narration), Parameter: nameof(MerchantBatchBankTransferRequest.Narration)),
-                (Rule: IsInvalid(merchantBatchBankTransfer.Request.Metadata), Parameter: nameof(MerchantBatchBankTransferRequest.Metadata))
+                (Rule: IsInvalid(merchantBatchBankTransfer.Request), Parameter: nameof(MerchantBatchBankTransferRequest))
+     
 
 
                 );
@@ -102,7 +98,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
             }
         }
 
-        private static void ValidateMerchantBatchBankTransferRequest(MerchantBatchBankTransferRequest merchantBatchBankTransfer)
+        private static void ValidateMerchantBatchBankTransferRequest(List<MerchantBatchBankTransferRequest> merchantBatchBankTransfer)
         {
             Validate((Rule: IsInvalid(merchantBatchBankTransfer), Parameter: nameof(MerchantBatchBankTransferRequest)));
         }
@@ -140,7 +136,11 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
             Condition = @object is null,
             Message = "Value is required"
         };
-
+        private static dynamic IsInvalid(List<object> @object) => new
+        {
+            Condition = @object.Count <= 0,
+            Message = "Value is required"
+        };
 
         private static dynamic IsInvalid(string text) => new
         {

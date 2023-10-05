@@ -347,17 +347,24 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
                    Message = externalBatchDebitCustomerWalletsResponse.Message,
                    Data = new BatchDebitCustomerWalletsResponse.DataResponse
                    {
-                       Accepted = externalBatchDebitCustomerWalletsResponse.Data.Accepted.Select(accepted =>
+                       AllReferences = externalBatchDebitCustomerWalletsResponse.Data.AllReferences,
+                       MerchantId = externalBatchDebitCustomerWalletsResponse.Data.MerchantId,
+                       Reference = externalBatchDebitCustomerWalletsResponse.Data.Reference,
+                       PassedReferences = externalBatchDebitCustomerWalletsResponse.Data.PassedReferences,
+                       FailedReferences = externalBatchDebitCustomerWalletsResponse?.Data?.FailedReferences,
+                       Results = externalBatchDebitCustomerWalletsResponse.Data.Results.Select(results =>
                        {
-                           return new BatchDebitCustomerWalletsResponse.Accepted
+                           return new BatchDebitCustomerWalletsResponse.Result
                            {
-                               Reference = accepted.Reference,
-                               CustomerId = accepted.CustomerId,
-                               Amount = accepted.Amount,
+                              Amount = results.Amount,
+                              CustomerId = results.CustomerId,
+                              Reason = results.Reason,
+                              Reference = results.Reference,
+                              Status = results.Status,
                            };
-                       }).ToList(),
-                       Rejected = externalBatchDebitCustomerWalletsResponse.Data.Rejected,
-                       BatchReference = externalBatchDebitCustomerWalletsResponse.Data.BatchReference
+                       }).ToList()
+                  
+                    
                    },
                    Status = externalBatchDebitCustomerWalletsResponse.Status
             };

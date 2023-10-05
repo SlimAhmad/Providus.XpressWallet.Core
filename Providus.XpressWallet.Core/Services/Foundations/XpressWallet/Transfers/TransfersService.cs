@@ -2,6 +2,7 @@
 using Providus.XpressWallet.Core.Brokers.XpressWallet;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressWallet.ExternalTransfers;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Transfers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
 {
@@ -70,7 +71,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
         TryCatch(async () =>
         {
             ValidateMerchantBatchBankTransfer(externalMerchantBatchBankTransfer);
-            ExternalMerchantBatchBankTransferRequest externalMerchantBatchBankTransferRequest = ConvertToTransfersRequest(externalMerchantBatchBankTransfer);
+            List<ExternalMerchantBatchBankTransferRequest> externalMerchantBatchBankTransferRequest = ConvertToTransfersRequest(externalMerchantBatchBankTransfer);
             ExternalMerchantBatchBankTransferResponse externalMerchantBatchBankTransferResponse = await xPressWalletBroker.PostMerchantBatchBankTransferAsync(externalMerchantBatchBankTransferRequest);
             return ConvertToTransfersResponse(externalMerchantBatchBankTransfer, externalMerchantBatchBankTransferResponse);
         });
@@ -135,21 +136,26 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transfers
 
         }
 
-        private static ExternalMerchantBatchBankTransferRequest ConvertToTransfersRequest(MerchantBatchBankTransfer merchantBatchBankTransfer)
+        private static List<ExternalMerchantBatchBankTransferRequest> ConvertToTransfersRequest(MerchantBatchBankTransfer merchantBatchBankTransfer)
         {
+            var batchTransfers = new List<ExternalMerchantBatchBankTransferRequest>();
 
-            return new ExternalMerchantBatchBankTransferRequest
+            foreach(var merchant in merchantBatchBankTransfer.Request)
             {
-                AccountName = merchantBatchBankTransfer.Request.AccountName,
-                Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                batchTransfers.Add(new ExternalMerchantBatchBankTransferRequest
                 {
-                    CustomerData = merchantBatchBankTransfer.Request.Metadata.CustomerData
-                },
-                AccountNumber = merchantBatchBankTransfer.Request.AccountNumber,
-                Amount = merchantBatchBankTransfer.Request.Amount,
-                Narration = merchantBatchBankTransfer.Request.Narration,
-                SortCode = merchantBatchBankTransfer.Request.SortCode,
-            };
+                    AccountName = merchant.AccountName,
+                    Metadata = new ExternalMerchantBatchBankTransferRequest.ExternalMetadata
+                    {
+                        CustomerData = merchant.Metadata.CustomerData
+                    },
+                    AccountNumber = merchant.AccountNumber,
+                    Amount = merchant.Amount,
+                    Narration = merchant.Narration,
+                    SortCode = merchant.SortCode,
+                });
+            }
+            return batchTransfers;
 
 
 

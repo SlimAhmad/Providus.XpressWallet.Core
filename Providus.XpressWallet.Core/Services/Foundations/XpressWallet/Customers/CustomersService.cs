@@ -112,6 +112,14 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
                         PhoneNumber = externalCustomerDetailsResponse.Customer.PhoneNumber,
                         UpdatedAt = externalCustomerDetailsResponse.Customer.UpdatedAt,
                         WalletId = externalCustomerDetailsResponse.Customer.WalletId,
+                        Address = externalCustomerDetailsResponse.Customer.Address,
+                        DeletedAt = externalCustomerDetailsResponse.Customer.DeletedAt,
+                        Tier = externalCustomerDetailsResponse.Customer.Tier,
+                        Metadata = new CustomerDetailsResponse.Metadata
+                        {
+                          AdditionalData = externalCustomerDetailsResponse.Customer.Metadata.AdditionalData,
+                          EvenMore = externalCustomerDetailsResponse.Customer.Metadata.EvenMore
+                        }
                     },
                     Status = externalCustomerDetailsResponse.Status
                 }
@@ -162,9 +170,23 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers
                          PhoneNumber = customers.PhoneNumber,
                          UpdatedAt = customers.UpdatedAt,
                          WalletId = customers.WalletId,
+                         Address = customers.Address,
+                         DeletedAt = customers.DeletedAt,
+                         Tier = customers.Tier,
+                         Metadata = new AllCustomersResponse.MetadataResponse
+                         {
+                             EvenMore = customers.Metadata.EvenMore,
+                             AdditionalData = customers.Metadata.AdditionalData,
+                             Page = customers.Metadata.Page,
+                             TotalPages = customers.Metadata.TotalPages,
+                             TotalRecords = customers.Metadata.TotalRecords,
+                             
+                         }
                      }).ToList(),
                     Metadata = new AllCustomersResponse.MetadataResponse
                     {
+                        AdditionalData = externalAllCustomersResponse.Metadata.AdditionalData,
+                        EvenMore = externalAllCustomersResponse.Metadata.EvenMore,
                         Page = externalAllCustomersResponse.Metadata.Page,
                         TotalPages = externalAllCustomersResponse.Metadata.TotalPages,
                         TotalRecords = externalAllCustomersResponse.Metadata.TotalRecords,

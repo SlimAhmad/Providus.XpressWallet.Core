@@ -24,7 +24,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
         {
             ValidateMerchantTransactionsParameters(page);
             ValidateMerchantTransactionsParameters(type);
-            ValidateMerchantTransactionsParameters(status);
+            //ValidateMerchantTransactionsParameters(status);
             ExternalMerchantTransactionsResponse externalMerchantTransactionsResponse = 
                 await xPressWalletBroker.GetMerchantTransactionsAsync(page,type,status);
             return ConvertToTransactionsResponse(externalMerchantTransactionsResponse);
@@ -56,8 +56,8 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
             string search, string category, string type, int page, int perPage)=>
         TryCatch(async () =>
         {
-            ValidateBatchTransactionsParameters(search);
-            ValidateBatchTransactionsParameters(category);
+            //ValidateBatchTransactionsParameters(search);
+            ValidateBatchTransactionsParameters(page);
             ValidateBatchTransactionsParameters(type);
             ValidateBatchTransactionsParameters(perPage);
             ExternalBatchTransactionsResponse externalBatchTransactionsResponse = 
@@ -504,33 +504,47 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Transacti
                             Source = data.Source,
                             Total = data.Total,
                             Vat = data.Vat,
-                            Metadata = new DownloadCustomerTransactionResponse.Metadata
-                            {
-                                 Reference = data.Metadata.Reference,
-                                 Fee = data.Metadata.Fee,
-                                 AccountName = data.Metadata.AccountName,
-                                 AccountNumber = data.Metadata.AccountNumber,
-                                 Amount = data.Metadata.Amount,
-                                 CustomData = new DownloadCustomerTransactionResponse.CustomData
-                                 {
-                                     CustomerData = data.Metadata.CustomData.CustomerData,
-                                     MoreData = data.Metadata.CustomData.MoreData,
-                                     SomeData = data.Metadata.CustomData.SomeData,
-                                 },
-                                 CustomerId = data.Metadata.CustomerId,
-                                 CustomerName = data.Metadata.CustomerName,
-                                 CustomerWallet = data.Metadata.CustomerWallet,
-                                 Narration = data.Metadata.Narration,
-                                 SessionId = data.Metadata.SessionId,
-                                 SortCode = data.Metadata.SortCode,
-                                 SourceCustomerId = data.Metadata.SourceCustomerId,
-                                 SourceCustomerWallet = data.Metadata.SourceCustomerWallet,
-                                 TargetCustomerId = data.Metadata.TargetCustomerId,
-                                 TargetCustomerWallet = data.Metadata.TargetCustomerWallet,
-                                 TransactionReference = data.Metadata.TransactionReference,                                 
-                            },
                             Type = data.Type,
                             UpdatedAt = data.UpdatedAt,
+                            Metadata = new DownloadCustomerTransactionResponse.Metadata
+                            {
+                                BankName = data.Metadata?.BankName,
+                                Charges = string.IsNullOrEmpty(data.Metadata?.Charges.ToString()) ? null : data.Metadata?.Charges,
+                                MerchantId = data.Metadata?.MerchantId,
+                                NameEnquiryRef = data.Metadata?.NameEnquiryRef,
+                                SessionID = data.Metadata?.SessionID,
+                                TotalAmount = string.IsNullOrEmpty(data.Metadata?.TotalAmount.ToString()) ? null : data.Metadata?.TotalAmount,
+                                Vat = string.IsNullOrEmpty(data.Metadata?.Vat.ToString()) ? null : data.Metadata?.Vat,
+                                WalletAccountName = data.Metadata?.WalletAccountName,
+                                WalletAccountNumber = data.Metadata?.WalletAccountNumber,
+                                WalletId = data.Metadata?.WalletId,
+                                CustomerId = data.Metadata?.CustomerId,
+                                CustomerName = data.Metadata?.CustomerName,
+                                CustomerWallet = data.Metadata?.CustomerWallet,
+                                Narration = data.Metadata?.Narration,
+                                SortCode = data.Metadata?.SortCode,
+                                SourceCustomerId = data.Metadata?.SourceCustomerId,
+                                SourceCustomerWallet = data.Metadata?.SourceCustomerWallet,
+                                TargetCustomerId = data.Metadata?.TargetCustomerId,
+                                TargetCustomerWallet = data.Metadata?.TargetCustomerWallet,
+                                Fee =  string.IsNullOrEmpty(data.Metadata?.Fee.ToString()) ? null : data.Metadata?.Fee,
+                                AccountName = data.Metadata?.AccountName,
+                                AccountNumber = data.Metadata?.AccountNumber,
+                                Amount = string.IsNullOrEmpty(data.Metadata?.Amount.ToString()) ? null : data.Metadata.Amount,
+                                
+                                AdditionalMetadata = new DownloadCustomerTransactionResponse.AdditionalMetadata
+                                {
+                                    CustomerData = data.Metadata?.AdditionalMetadata?.CustomerData
+                                },
+                                CustomData = new DownloadCustomerTransactionResponse.CustomData
+                                {
+                                   
+                                    MoreData = data.Metadata?.CustomData?.MoreData,
+                                    SomeData = data.Metadata?.CustomData?.SomeData,
+
+                                },
+
+                            },
                         };
                     }).ToList(),
                    
