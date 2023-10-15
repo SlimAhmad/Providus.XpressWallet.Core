@@ -1,4 +1,5 @@
 ﻿using Providus.XpressWallet.Core.Clients.Auth;
+using Providus.XpressWallet.Core.Clients.BillPayment;
 using Providus.XpressWallet.Core.Clients.Card;
 using Providus.XpressWallet.Core.Clients.Customers;
 using Providus.XpressWallet.Core.Clients.Merchant;
@@ -23,6 +24,7 @@ namespace Providus.XpressWallet.Core.Clients
         IRoleAndPermissionClient RoleAndPermission { get; }
         IMerchantClient Merchant { get; }
         ICustomersClient Customers { get; }
+        IBillPaymentClient BillPayment { get; }
 
     }
 }

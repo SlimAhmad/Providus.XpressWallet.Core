@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Providus.XpressWallet.Core.Brokers.DateTimes;
+using Providus.XpressWallet.Core.Brokers.ProviPay;
 using Providus.XpressWallet.Core.Brokers.XpressWallet;
+using Providus.XpressWallet.Core.Clients.BillPayment;
 using Providus.XpressWallet.Core.Clients.Card;
 using Providus.XpressWallet.Core.Clients.Customers;
 using Providus.XpressWallet.Core.Clients.Merchant;
@@ -12,6 +14,7 @@ using Providus.XpressWallet.Core.Clients.User;
 using Providus.XpressWallet.Core.Clients.Wallet;
 using Providus.XpressWallet.Core.Models.Configurations;
 using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Auth;
+using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.BillPayment;
 using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Card;
 using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Customers;
 using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Merchant;
@@ -43,6 +46,8 @@ namespace Providus.XpressWallet.Core.Clients.Auth
         public IRoleAndPermissionClient RoleAndPermission { get; set;}
         public IMerchantClient Merchant { get; set;}
         public ICustomersClient Customers { get; set;}
+        public IBillPaymentClient BillPayment { get; set; }
+
 
 
 
@@ -60,6 +65,7 @@ namespace Providus.XpressWallet.Core.Clients.Auth
             RoleAndPermission = serviceProvider.GetRequiredService<IRoleAndPermissionClient>();
             Merchant = serviceProvider.GetRequiredService<IMerchantClient>();
             Customers = serviceProvider.GetRequiredService<ICustomersClient>();
+            BillPayment = serviceProvider.GetRequiredService<IBillPaymentClient>();
 
 
         }
@@ -78,12 +84,15 @@ namespace Providus.XpressWallet.Core.Clients.Auth
                 .AddTransient<ITransfersService, TransfersService>()
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<IWalletService, WalletService>()
+                .AddTransient<IBillPaymentService, BillPaymentService>()
                 .AddTransient<IXpressWalletBroker,XpressWalletBroker>()
                 .AddTransient<IDateTimeBroker, DateTimeBroker>()
-              
+                .AddTransient<IProviPayBroker, ProviPayBroker>()
+
 
                 .AddTransient<IXpressWalletClient, XpressWalletClient>()
                 .AddTransient<ICustomersClient, CustomersClient>()
+                .AddTransient<IBillPaymentClient, BillPaymentClient>()
                 .AddTransient<IAuthClient, AuthClient>()
                 .AddTransient<ICardClient, CardClient>()
                 .AddTransient<IMerchantClient, MerchantClient>()
