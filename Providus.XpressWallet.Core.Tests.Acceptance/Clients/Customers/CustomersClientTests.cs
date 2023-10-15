@@ -36,7 +36,7 @@ namespace Providus.XpressWallet.Core.Tests.Acceptance.Clients.Customers
             new MnemonicString().GetValue();
 
         private static ExternalUpdateCustomerProfileRequest ConvertToCustomersRequest(
-    UpdateCustomerProfile updateCustomerProfile)
+           UpdateCustomerProfile updateCustomerProfile)
         {
 
             return new ExternalUpdateCustomerProfileRequest
