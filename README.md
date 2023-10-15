@@ -491,7 +491,130 @@ namespace ExampleProvidus.XpressWalletNet
 ```
 
 
+### ProviPay
+This section covers key related to bill payment management and operations. These encompass various bill-related functions, including querying available bills 
+This section implements the following:
+- [Retrieve bill categories]
+- [Retrieve bills by category]
+- [Retrieve fields]
+- [Retrieve payment enquiry]
+- [Validate customer]
+- [Bill payment]
 
+
+
+### Retrieve bill categories
+This retrieves the bill categories.
+
+#### Program.cs
+```csharp
+using System;
+using System.Threading.Tasks;
+using Providus.XpressWallet.Core;
+using Providus.XpressWallet.Core.Models.Services.Foundations.ProviPay.BillPayment.Categories;
+
+namespace ExampleProvidus.XpressWalletNet
+{
+    internal class Program
+    {
+        static async Task Main(string[] args)
+        {
+
+             var apiConfigurations = new ApiConfigurations
+            {
+              
+                Password = "test",
+                UserName = "test",
+                ApiUrl = "<URL>"
+
+
+            };
+
+            this.xPressWalletClient = new XpressWalletClient(apiConfigurations);
+
+            Categories retrievedBillPaymentModel =
+              await this.xPressWalletClient.BillPayment.RetrieveCategoriesAsync();
+
+         
+
+     
+
+        }
+    }
+}
+```
+
+### Bill payment
+This charges the customer from a bank account provided for any given bill.
+NOTE: First retrieve the keys for a given bill using the [Retrieve fields] each bill has different input keys to be passed.
+NOTE: it does not support xPressWallet bank accounts you need to provide your settlement merchant account.
+
+#### Program.cs
+```csharp
+using System;
+using System.Threading.Tasks;
+using Providus.XpressWallet.Core;
+using Providus.XpressWallet.Core.Models.Services.Foundations.ProviPay.BillPayment.Categories;
+
+namespace ExampleProvidus.XpressWalletNet
+{
+    internal class Program
+    {
+        static async Task Main(string[] args)
+        {
+
+             var apiConfigurations = new ApiConfigurations
+            {
+              
+                Password = "test",
+                UserName = "test",
+                ApiUrl = "<URL>"
+
+
+            };
+
+            this.xPressWalletClient = new XpressWalletClient(apiConfigurations);
+
+              var request = new Payment
+            {
+                Request = new PaymentRequest
+                {
+                    BillId = "1086",
+                    ChannelRef = Guid.NewGuid().ToString(),
+                    CustomerAccountNo = "<BankAccountNumber>",
+                    Inputs = new List<PaymentRequest.Input>
+                    {
+                       new PaymentRequest.Input
+                       {
+                           Value = "MTNVTU",
+                           Key = "serviceType"
+                       },
+                        new PaymentRequest.Input
+                       {
+                           Value = "100",
+                           Key = "amount"
+                       },
+                         new PaymentRequest.Input
+                       {
+                           Value = "070-----0",
+                           Key = "phoneNumber"
+                       },
+                    },
+
+                }
+            };
+
+            Payment retrievedCustomerModel =
+            await this.xPressWalletClient.BillPayment.ChargePaymentAsync(request);
+
+         
+
+     
+
+        }
+    }
+}
+```
 
 #### Exceptions
 
