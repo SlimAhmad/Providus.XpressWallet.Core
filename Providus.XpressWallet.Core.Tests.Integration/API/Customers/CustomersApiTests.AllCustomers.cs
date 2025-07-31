@@ -4,7 +4,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Customers
 {
     public partial class CustomersApiTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [Fact]
         public async Task ShouldRetrieveAllCustomersAsync()
         {
             // given

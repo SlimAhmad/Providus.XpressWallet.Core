@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressWallet.ExternalWallet
 {
@@ -56,10 +51,10 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.ExternalXpressW
             public string AccountNumber { get; set; }
 
             [JsonProperty("bookedBalance")]
-            public int BookedBalance { get; set; }
+            public decimal BookedBalance { get; set; }
 
             [JsonProperty("availableBalance")]
-            public int AvailableBalance { get; set; }
+            public decimal AvailableBalance { get; set; }
 
             [JsonProperty("accountReference")]
             public string AccountReference { get; set; }

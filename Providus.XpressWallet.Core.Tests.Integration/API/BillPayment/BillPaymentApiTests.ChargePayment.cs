@@ -14,7 +14,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.BillPayment
                 {
                     BillId = "1086",
                     ChannelRef = Guid.NewGuid().ToString(),
-                    CustomerAccountNo = "<>",
+                    CustomerAccountNo = "1701130656",
                     Inputs = new List<PaymentRequest.Input>
                     {
                        new PaymentRequest.Input
@@ -29,7 +29,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.BillPayment
                        },
                          new PaymentRequest.Input
                        {
-                           Value = "070-----",
+                           Value = "07064415311",
                            Key = "phoneNumber"
                        },
                     },

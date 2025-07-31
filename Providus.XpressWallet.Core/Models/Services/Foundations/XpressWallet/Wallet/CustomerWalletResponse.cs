@@ -56,10 +56,10 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wa
             public string AccountNumber { get; set; }
 
             [JsonProperty("bookedBalance")]
-            public int BookedBalance { get; set; }
+            public decimal BookedBalance { get; set; }
 
             [JsonProperty("availableBalance")]
-            public int AvailableBalance { get; set; }
+            public decimal AvailableBalance { get; set; }
 
             [JsonProperty("accountReference")]
             public string AccountReference { get; set; }

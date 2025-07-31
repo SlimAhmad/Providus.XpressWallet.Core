@@ -4,7 +4,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
 {
     public partial class TransfersApiTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [Fact]
         public async Task ShouldInitiateCustomerBankTransferAsync()
         {
             // given
@@ -12,8 +12,8 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
             {
                 Request = new CustomerBankTransferRequest
                 {
-                     AccountName = "<>",
-                     AccountNumber = "<>",
+                     AccountName = "Energywallet Services LTD",
+                     AccountNumber = "8866159722",
                      Amount = 50,
                      CustomerId = "183adcd3-4695-496a-8c25-10715cdfc45f",
                      Narration = "test",

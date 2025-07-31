@@ -375,7 +375,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Team
 
        
 
-        public static TheoryData UnauthorizedExceptions()
+        public static TheoryData<HttpResponseException> UnauthorizedExceptions()
         {
             return new TheoryData<HttpResponseException>
             {

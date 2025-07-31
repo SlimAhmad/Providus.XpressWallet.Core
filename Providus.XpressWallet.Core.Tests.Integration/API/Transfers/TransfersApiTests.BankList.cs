@@ -4,7 +4,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Transfers
 {
     public partial class TransfersApiTests
     {
-        [Fact(Skip = "This test is only for releases")]
+        [Fact]
         public async Task ShouldRetrieveBankListAsync()
         {
             // given
