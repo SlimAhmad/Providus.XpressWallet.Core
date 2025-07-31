@@ -1,7 +1,7 @@
 ﻿using ADotNet.Clients;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV1s;
+using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV3s;
 
 namespace Providus.XpressWallet.Core.Infrastructure.Build
 {
@@ -14,6 +14,8 @@ namespace Providus.XpressWallet.Core.Infrastructure.Build
         private static void Main(string[] args)
         {
             var adoNetClient = new ADotNetClient();
+            string branchName = "main";
+            string projectName = "Providus.XpressWallet.Core Build";
 
             var githubPipeline = new GithubPipeline
             {
@@ -32,50 +34,66 @@ namespace Providus.XpressWallet.Core.Infrastructure.Build
                     }
                 },
 
-                Jobs = new Jobs
+                Jobs = new Dictionary<string, Job>
                 {
-                    Build = new BuildJob
                     {
-                        EnvironmentVariables = new Dictionary<string, string>
+                       "build",
+                        new Job
                         {
-                            { "ApiKey", "${{ secrets.APIKEY }}" }
-                        },
+                            Name = "Build",
+                            RunsOn = BuildMachines.WindowsLatest,
 
-                        RunsOn = BuildMachines.WindowsLatest,
-
-                        Steps = new List<GithubTask>
-                        {
-                            new CheckoutTaskV2
+                            EnvironmentVariables = new Dictionary<string, string>
                             {
-                                Name = "Pulling Code"
+                                { "ApiKey", "${{ secrets.APIKEY }}" }
                             },
 
-                            new SetupDotNetTaskV1
+                            Steps = new List<GithubTask>
                             {
-                                Name = "Installing .NET",
-
-                                TargetDotNetVersion = new TargetDotNetVersion
+                                new CheckoutTaskV3
                                 {
-                                    DotNetVersion = "7.0.201"
+                                    Name = "Check out"
+                                },
+
+                                new SetupDotNetTaskV3
+                                {
+                                    Name = "Setup .Net",
+
+                                    With = new TargetDotNetVersionV3
+                                    {
+                                        DotNetVersion = "9.0.200"
+                                    }
+                                },
+
+                                new RestoreTask
+                                {
+                                    Name = "Restore"
+                                },
+
+                                new DotNetBuildTask
+                                {
+                                    Name = "Build"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Test"
                                 }
-                            },
-
-                            new RestoreTask
-                            {
-                                Name = "Restoring Packages"
-                            },
-
-                            new DotNetBuildTask
-                            {
-                                Name = "Building Solution"
-                            },
-
-                            new TestTask
-                            {
-                                Name = "Running Tests"
                             }
                         }
-                    }
+                    },
+                    {
+                        "add_tag",
+                        new TagJob(
+                            runsOn: BuildMachines.UbuntuLatest,
+                            dependsOn: "build",
+                            projectRelativePath: $"{projectName}/{projectName}.csproj",
+                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
+                            branchName: branchName)
+                        {
+                            Name = "Tag and Release"
+                        }
+                    },
                 }
             };
 

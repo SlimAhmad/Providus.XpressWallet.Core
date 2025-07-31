@@ -14,7 +14,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Customers
             var apiConfigurations = new ApiConfigurations
             {
               
-                ApiKey = Environment.GetEnvironmentVariable("ApiKey"),
+                ApiKey = "sk_live_cLZvpa0BCGkEq8EsoV7xNCquC4taJFIY63DQgzGuAEVnUwez",
        
 
             };

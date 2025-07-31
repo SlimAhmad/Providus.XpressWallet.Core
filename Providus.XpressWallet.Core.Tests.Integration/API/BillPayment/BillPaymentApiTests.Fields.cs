@@ -1,5 +1,4 @@
-﻿using Providus.XpressWallet.Core.Models.Services.Foundations.ProviPay.BillPayment.Categories;
-using Providus.XpressWallet.Core.Models.Services.Foundations.ProviPay.BillPayment.Fields;
+﻿using Providus.XpressWallet.Core.Models.Services.Foundations.ProviPay.BillPayment.Fields;
 
 namespace Providus.XpressWallet.Core.Tests.Integration.API.BillPayment
 {

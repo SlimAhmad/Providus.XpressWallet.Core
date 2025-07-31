@@ -141,7 +141,5 @@ namespace Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wa
             [JsonProperty("walletId")]
             public string WalletId { get; set; }
         }
-
-
     }
 }

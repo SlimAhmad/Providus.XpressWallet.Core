@@ -1,13 +1,15 @@
-﻿using KellermanSoftware.CompareNetObjects;
+﻿using System.Linq.Expressions;
+using KellermanSoftware.CompareNetObjects;
 using Moq;
 using Providus.XpressWallet.Core.Brokers.DateTimes;
 using Providus.XpressWallet.Core.Brokers.ProviPay;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalProviPay.ExternalPayment;
 using Providus.XpressWallet.Core.Models.Services.Foundations.ExternalProviPay.ExternalValidate;
+using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wallet.Exceptions;
 using Providus.XpressWallet.Core.Services.Foundations.XpressWallet.BillPayment;
 using RESTFulSense.Exceptions;
-using System.Linq.Expressions;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 
 namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.BillPayment
@@ -311,7 +313,7 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.BillPayment
         #endregion
 
 
-        public static TheoryData UnauthorizedExceptions()
+        public static TheoryData<HttpResponseException> UnauthorizedExceptions()
         {
             return new TheoryData<HttpResponseException>
             {
