@@ -194,6 +194,15 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
             Validate((Rule: IsInvalid(CustomerCreditCustomerWallet), Parameter: nameof(CustomerCreditCustomerWalletRequest)));
         }
 
+        private static void ValidateUpgradeCustomerWalletRequest(UpgradeCustomerWalletRequest upgradeCustomerWalletRequest)
+        {
+            Validate(
+                (Rule: IsInvalid(upgradeCustomerWalletRequest), Parameter: nameof(UpgradeCustomerWalletRequest)),
+                (Rule: IsInvalid(upgradeCustomerWalletRequest.CustomerId), Parameter: nameof(UpgradeCustomerWalletRequest.CustomerId)),
+                (Rule: IsInvalid(upgradeCustomerWalletRequest.Tier), Parameter: nameof(UpgradeCustomerWalletRequest.Tier))
+                );
+        }
+
 
         private static void ValidateFundMerchantSandBoxWalletNotNull(FundMerchantSandBoxWallet fundMerchantSandBoxWallet)
         {
@@ -291,6 +300,12 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
         {
             Condition = number <= 0,
             Message = "Value is required"
+        };
+
+        private static dynamic IsInvalid(WalletTier tier) => new
+        {
+            Condition = !Enum.IsDefined(tier),
+            Message = "Value not recognized"
         };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)

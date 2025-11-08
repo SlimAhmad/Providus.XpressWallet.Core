@@ -870,8 +870,6 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
         #endregion
 
 
-       
-
         public static TheoryData<HttpResponseException> UnauthorizedExceptions()
         {
             return new TheoryData<HttpResponseException>
@@ -880,8 +878,6 @@ namespace Providus.XpressWallet.Core.Tests.Unit.Foundations.Services.Wallet
                 new HttpResponseForbiddenException()
             };
         }
-
-
 
     }
 }

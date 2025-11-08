@@ -1,6 +1,7 @@
 ﻿using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wallet;
 using Providus.XpressWallet.Core.Models.Services.Foundations.XpressWallet.Wallet.Exceptions;
 using RESTFulSense.Exceptions;
+using Xeptions;
 
 namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
 {
@@ -27,6 +28,7 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
         private delegate ValueTask<CustomerCreditCustomerWallet> ReturningCustomerCreditCustomerWalletFunction();
 
         private delegate ValueTask<FundMerchantSandBoxWallet> ReturningFundMerchantSandBoxWalletFunction();
+        private delegate ValueTask<UpgradeCustomerWallet> ReturningUpgradeCustomerWalletFunction();
 
 
         private async ValueTask<UnfreezeWallet> TryCatch(ReturningUnfreezeWalletFunction returningUnfreezeWalletFunction)
@@ -754,6 +756,79 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
             try
             {
                 return await returningAllWalletsFunction();
+            }
+            catch (NullWalletException nullWalletException)
+            {
+                throw new WalletValidationException(nullWalletException);
+            }
+            catch (InvalidWalletException invalidWalletException)
+            {
+                throw new WalletValidationException(invalidWalletException);
+            }
+            catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
+            {
+                var invalidConfigurationWalletException =
+                    new InvalidConfigurationWalletException(httpResponseUrlNotFoundException);
+
+                throw new WalletDependencyException(invalidConfigurationWalletException);
+            }
+            catch (HttpResponseUnauthorizedException httpResponseUnauthorizedException)
+            {
+                var unauthorizedWalletException =
+                    new UnauthorizedWalletException(httpResponseUnauthorizedException);
+
+                throw new WalletDependencyException(unauthorizedWalletException);
+            }
+            catch (HttpResponseForbiddenException httpResponseForbiddenException)
+            {
+                var unauthorizedWalletException =
+                    new UnauthorizedWalletException(httpResponseForbiddenException);
+
+                throw new WalletDependencyException(unauthorizedWalletException);
+            }
+            catch (HttpResponseNotFoundException httpResponseNotFoundException)
+            {
+                var notFoundWalletException =
+                    new NotFoundWalletException(httpResponseNotFoundException);
+
+                throw new WalletDependencyValidationException(notFoundWalletException);
+            }
+            catch (HttpResponseBadRequestException httpResponseBadRequestException)
+            {
+                var invalidWalletException =
+                    new InvalidWalletException(httpResponseBadRequestException);
+
+                throw new WalletDependencyValidationException(invalidWalletException);
+            }
+            catch (HttpResponseTooManyRequestsException httpResponseTooManyRequestsException)
+            {
+                var excessiveCallWalletException =
+                    new ExcessiveCallWalletException(httpResponseTooManyRequestsException);
+
+                throw new WalletDependencyValidationException(excessiveCallWalletException);
+            }
+            catch (HttpResponseException httpResponseException)
+            {
+                var failedServerWalletException =
+                    new FailedServerWalletException(httpResponseException);
+
+                throw new WalletDependencyException(failedServerWalletException);
+            }
+            catch (Exception exception)
+            {
+                var failedWalletServiceException =
+                    new FailedWalletServiceException(exception);
+
+                throw new WalletServiceException(failedWalletServiceException);
+            }
+        }
+
+        private async ValueTask<UpgradeCustomerWallet> TryCatch(
+            ReturningUpgradeCustomerWalletFunction returningUpgradeCustomerWalletFunction)
+        {
+            try
+            {
+                return await returningUpgradeCustomerWalletFunction();
             }
             catch (NullWalletException nullWalletException)
             {

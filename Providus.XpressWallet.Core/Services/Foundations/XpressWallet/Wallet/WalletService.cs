@@ -120,6 +120,19 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
             return ConvertToWalletResponse(externalFundMerchantSandBoxWallet, externalFundMerchantSandBoxWalletResponse);
         });
 
+        public ValueTask<UpgradeCustomerWallet> PostUpgradeCustomerWalletRequestAsync(
+            UpgradeCustomerWallet externalUpgradeCustomerWallet) =>
+        TryCatch(async () =>
+        {
+            ValidateUpgradeCustomerWalletRequest(externalUpgradeCustomerWallet.Request);
+            ExternalUpgradeCustomerWalletRequest externalUpgradeCustomerWalletRequest = 
+                ConvertToWalletRequest(externalUpgradeCustomerWallet);
+            ExternalUpgradeCustomerWalletResponse externalUpgradeCustomerWalletResponse =
+                await xPressWalletBroker.PostUpgradeCustomerWalletAsync(externalUpgradeCustomerWalletRequest,
+                    externalUpgradeCustomerWallet.Request.CustomerId);
+            return ConvertToWalletResponse(externalUpgradeCustomerWallet, externalUpgradeCustomerWalletResponse);
+        });
+
         public ValueTask<UnfreezeWallet> PostUnfreezeWalletRequestAsync(
             UnfreezeWallet externalUnfreezeWallet)=>
         TryCatch(async () =>
@@ -157,6 +170,17 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
 
 
         }
+
+        private static ExternalUpgradeCustomerWalletRequest ConvertToWalletRequest(
+            UpgradeCustomerWallet  upgradeCustomerWallet)
+        {
+
+            return new ExternalUpgradeCustomerWalletRequest
+            {
+                Tier = upgradeCustomerWallet.Request.Tier.ToString(),
+            };
+        }
+
         private static ExternalBatchDebitCustomerWalletsRequest ConvertToWalletRequest(
             BatchDebitCustomerWallets  batchDebitCustomerWallets)
         {
@@ -335,6 +359,29 @@ namespace Providus.XpressWallet.Core.Services.Foundations.XpressWallet.Wallet
                }
             };
             return batchCreditCustomerWallet;
+
+        }
+
+        private static UpgradeCustomerWallet ConvertToWalletResponse(
+            UpgradeCustomerWallet upgradeCustomerWallet,
+            ExternalUpgradeCustomerWalletResponse externalUpgradeCustomerWalletResponse)
+        {
+            upgradeCustomerWallet.Response = new UpgradeCustomerWalletResponse
+            {
+               Status = externalUpgradeCustomerWalletResponse.Status,
+               Message = externalUpgradeCustomerWalletResponse.Message,
+               CustomerResponse = new UpgradeCustomerWalletResponse.Customer
+               {
+                  DateOfBirth = externalUpgradeCustomerWalletResponse.Customer.DateOfBirth,
+                  Tier = externalUpgradeCustomerWalletResponse.Customer.Tier,
+                  Email = externalUpgradeCustomerWalletResponse.Customer.Email,
+                  FirstName = externalUpgradeCustomerWalletResponse.Customer.FirstName,
+                  LastName = externalUpgradeCustomerWalletResponse.Customer.LastName,
+                  Metadata = externalUpgradeCustomerWalletResponse.Customer.Metadata,
+                  PhoneNumber = externalUpgradeCustomerWalletResponse.Customer.PhoneNumber,
+               }
+            };
+            return upgradeCustomerWallet;
 
         }
 
