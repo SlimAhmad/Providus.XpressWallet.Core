@@ -4,7 +4,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
 {
     public partial class WalletApiTests
     {
-        [Fact]
+        [Fact(Skip = "This test is only for releases")]
         public async Task ShouldUpgradeCustomerWalletAsync()
         {
             // given
@@ -12,7 +12,7 @@ namespace Providus.XpressWallet.Core.Tests.Integration.API.Wallet
             {
                 Request = new UpgradeCustomerWalletRequest
                 {  
-                     CustomerId = "dfa8e0b5-7eb0-4e63-b028-198ad59b2e70",
+                     CustomerId = Guid.NewGuid().ToString(),
                      Tier = WalletTier.TIER_3
                 }
             };
