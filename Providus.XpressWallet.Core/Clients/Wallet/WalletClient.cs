@@ -352,5 +352,36 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
                     WalletServiceException.InnerException as Xeption);
             }
         }
+
+        public async ValueTask<UpgradeCustomerWallet> UpgradeCustomerWalletAsync(
+            UpgradeCustomerWallet upgradeCustomerWallet)
+        {
+            try
+            {
+                return await walletService.PostUpgradeCustomerWalletRequestAsync(upgradeCustomerWallet);
+            }
+            catch (WalletValidationException WalletValidationException)
+            {
+
+                throw new WalletClientValidationException(
+                    WalletValidationException.InnerException as Xeption);
+            }
+            catch (WalletDependencyValidationException WalletDependencyValidationException)
+            {
+
+                throw new WalletClientValidationException(
+                    WalletDependencyValidationException.InnerException as Xeption);
+            }
+            catch (WalletDependencyException WalletDependencyException)
+            {
+                throw new WalletClientDependencyException(
+                    WalletDependencyException.InnerException as Xeption);
+            }
+            catch (WalletServiceException WalletServiceException)
+            {
+                throw new WalletClientServiceException(
+                    WalletServiceException.InnerException as Xeption);
+            }
+        }
     }
 }

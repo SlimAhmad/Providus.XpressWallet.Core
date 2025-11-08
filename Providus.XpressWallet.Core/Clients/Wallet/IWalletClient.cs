@@ -25,5 +25,7 @@ namespace Providus.XpressWallet.Core.Clients.Wallet
             CustomerCreditCustomerWallet externalCustomerCreditCustomerWallet);
         ValueTask<FundMerchantSandBoxWallet> FundMerchantSandBoxWalletAsync(
             FundMerchantSandBoxWallet externalFundMerchantSandBoxWallet);
+        ValueTask<UpgradeCustomerWallet> UpgradeCustomerWalletAsync(
+            UpgradeCustomerWallet upgradeCustomerWallet);
     }
 }

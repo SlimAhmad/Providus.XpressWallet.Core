@@ -81,6 +81,13 @@ namespace Providus.XpressWallet.Core.Brokers.XpressWallet
                                     relativeUrl: $"merchant/fund-wallet",
                                     content: externalFundMerchantSandBoxWalletRequest);
         }
+        public async ValueTask<ExternalUpgradeCustomerWalletResponse> PostUpgradeCustomerWalletAsync(
+            ExternalUpgradeCustomerWalletRequest externalUpgradeCustomerWalletRequest,string customerId)
+        {
+            return await PutAsync<ExternalUpgradeCustomerWalletRequest, ExternalUpgradeCustomerWalletResponse>(
+                                    relativeUrl: $"customer/{customerId}",
+                                    content: externalUpgradeCustomerWalletRequest);
+        }
 
 
 
